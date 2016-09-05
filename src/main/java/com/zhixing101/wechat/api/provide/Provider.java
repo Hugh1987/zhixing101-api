@@ -3,6 +3,7 @@ package com.zhixing101.wechat.api.provide;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
+ * dubbo
  * Created by adam on 5/9/16.
  */
 public class Provider {

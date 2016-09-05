@@ -10,16 +10,12 @@
         <result column="email" property="email" jdbcType="VARCHAR"/>
         <result column="sex" property="sex" jdbcType="TINYINT"/>
         <result column="isadmin" property="isAdmin" jdbcType="TINYINT"/>
-        <result column="isCheck" property="isCheck" jdbcType="TINYINT"/>
-        <result column="grade" property="grade" jdbcType="INTEGER"/>
         <result column="qrcode" property="qrcode" jdbcType="VARCHAR"/>
-        <result column="levels" property="levels" jdbcType="VARCHAR"/>
         <result column="phone" property="phone" jdbcType="VARCHAR"/>
         <result column="address" property="address" jdbcType="VARCHAR"/>
         <result column="referrer" property="referrer" jdbcType="VARCHAR"/>
         <result column="openId" property="openId" jdbcType="VARCHAR"/>
         <result column="userImage" property="userImage" jdbcType="VARCHAR"/>
-        <association property="dept" column="dept_id" select="queryDept"/>
 
     </resultMap>
 

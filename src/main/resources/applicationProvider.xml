@@ -6,11 +6,11 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
 	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 	<!-- 声明应用 -->
-	<dubbo:application name="dnionConfigManager_api"  owner="dcm" organization="Dnion" />
+	<dubbo:application name="zhixing101_wechat_api"  owner="zhixing" organization="zhixing" />
 	<!-- 使用multicast广播注册中心暴露发现服务地址 -->
 	<dubbo:registry address="multicast://224.5.6.7:1234?unicast=false" />
 	<!--dubbo集群开发，请激活下面条目，并注销上面的多播multicast -->
-	<dubbo:registry protocol="zookeeper" address="${zookeeper.address}" />
+	<!--<dubbo:registry protocol="zookeeper" address="${zookeeper.address}" />-->
 	<!-- 用dubbo协议在20880端口暴露服务 -->
 	<dubbo:protocol name="dubbo" port="${dubbo.port}" threadpool="cached" threads="500" dispatcher="all" />
 
