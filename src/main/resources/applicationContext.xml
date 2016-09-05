@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+       xmlns:int="http://www.springframework.org/schema/integration"
+       xmlns:task="http://www.springframework.org/schema/task" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
+		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd
+		http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd
+		http://www.springframework.org/schema/task
+		http://www.springframework.org/schema/task/spring-task.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!-- spring 配置文件参数 载入 -->
+    <context:property-placeholder location="classpath:props/api.properties"/>
+
+    <util:properties id="dataSourceProperties" location="classpath:props/dataSource.properties"/>
+    <util:properties id="apiProperties" location="classpath:props/api.properties"/>
+    
+
+    <!-- 全工程开启Spring 注解扫描  -->
+    <context:component-scan base-package="com.zhixing101.wechat">
+    </context:component-scan>
+    
+    <!-- 开启log4j -->
+    <bean id="log4jInitialization"
+          class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="targetClass" value="org.springframework.util.Log4jConfigurer"/>
+        <property name="targetMethod" value="initLogging"/>
+        <property name="arguments">
+            <list>
+                <value>classpath:props/log4j.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 配置spring 同步线程池(主要用于处理启动和关闭服务器时的任务) -->
+    <bean id="synTaskExecutor" class="org.springframework.core.task.SyncTaskExecutor"/>
+    <!-- 配置spring 异步线程池(主要用于处理数据上报的处理任务,一些定时任务等) -->
+    <bean id="taskExecutor"
+          class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+        <!-- 线程池维护线程的最少数量 -->
+        <property name="corePoolSize" value="500"/>
+        <!-- 线程池维护线程所允许的空闲时间 -->
+        <property name="keepAliveSeconds" value="300"/>
+        <!-- 线程池维护线程的最大数量 -->
+        <property name="maxPoolSize" value="2000"/>
+        <!-- 线程池所使用的缓冲队列 -->
+        <property name="queueCapacity" value="2000"/>
+        <!-- 线程池对拒绝任务(无线程可用)的处理策略 -->
+        <property name="rejectedExecutionHandler">
+            <bean class="java.util.concurrent.ThreadPoolExecutor$CallerRunsPolicy"/>
+        </property>
+    </bean>
+
+
+    <!-- Spring 任务调度配置  -->
+    <task:scheduler id="scheduler" pool-size="10"/>
+    <task:executor id="executor" pool-size="10"/>
+    <!-- 开启注解任务调度支持-->
+    <task:annotation-driven executor="executor" scheduler="scheduler" proxy-target-class="true"/>
+
+
+    <!-- 定时扫描 任务完成情况 -->
+	<!--<import resource="applicationContext_task.xml" />-->
+	<!--<import resource="applicationContext_aop.xml" />-->
+    <import resource="applicationProvider.xml"/>
+    <import resource="applicationContext_dataSource.xml"/>
+</beans>
