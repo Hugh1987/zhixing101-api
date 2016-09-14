@@ -10,4 +10,9 @@
 		<setting name="defaultStatementTimeout" value="25" />
 		<setting name="localCacheScope" value="SESSION" />
 	</settings>
+
+	<!-- 别名 -->
+	<typeAliases>
+		<package name="com.zhixing101.wechat.api.entity"/>
+	</typeAliases>
 </configuration>

@@ -9,14 +9,10 @@
         <result column="password" property="password" jdbcType="VARCHAR"/>
         <result column="email" property="email" jdbcType="VARCHAR"/>
         <result column="sex" property="sex" jdbcType="TINYINT"/>
-        <result column="isadmin" property="isAdmin" jdbcType="TINYINT"/>
-        <result column="qrcode" property="qrcode" jdbcType="VARCHAR"/>
-        <result column="phone" property="phone" jdbcType="VARCHAR"/>
-        <result column="address" property="address" jdbcType="VARCHAR"/>
-        <result column="referrer" property="referrer" jdbcType="VARCHAR"/>
+        <result column="mobile" property="mobile" jdbcType="VARCHAR"/>
         <result column="openId" property="openId" jdbcType="VARCHAR"/>
         <result column="userImage" property="userImage" jdbcType="VARCHAR"/>
-
+        <result column="isDelete" property="isDelete" jdbcType="TINYINT"/>
     </resultMap>
 
 
