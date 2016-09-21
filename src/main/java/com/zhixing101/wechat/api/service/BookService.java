@@ -40,4 +40,11 @@ public interface BookService {
      * @return
      */
     List<Book> queryBooksByParams(String col,String val);
+
+    /**
+     * 根据isbn返回Book对象
+     * @param isbn
+     * @return
+     */
+    Book saveBookByISBN(String isbn);
 }

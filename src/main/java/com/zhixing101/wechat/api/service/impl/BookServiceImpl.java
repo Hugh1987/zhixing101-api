@@ -4,6 +4,7 @@ import com.zhixing101.wechat.api.dao.BookMapper;
 import com.zhixing101.wechat.api.entity.Book;
 import com.zhixing101.wechat.api.service.BasicService;
 import com.zhixing101.wechat.api.service.BookService;
+import com.zhixing101.wechat.api.utils.ISBNUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,5 +48,9 @@ public class BookServiceImpl extends BasicService implements BookService {
 
     public List<Book> queryBooksByParams(String col, String val) {
         return bookMapper.queryBooksByParams(col,val);
+    }
+
+    public Book saveBookByISBN(String isbn) {
+        return ISBNUtils.findBookByISBN(isbn);
     }
 }

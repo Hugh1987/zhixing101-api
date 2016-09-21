@@ -14,12 +14,13 @@ public class Book extends BaseEntity {
     private String version;             //版本
     private String publication;         //出版发行项
     private String author;              //作者
-    private String press;               //出版社
-    private String carrierForm;         //载体形态
+    private String publisher;           //出版社
+    private String binding;             //载体形态
     private String language;            //语种
     private String generalNote;         //一般附注
     private String summary;             //摘要
-    private String isbn;                //isbn
+    private String isbn10;              //isbn10
+    private String isbn13;              //isbn13
     private String keywords;            //关键词
     private String chnCateId;           //中图法分类号
     private String indexId;             //索书号
@@ -85,22 +86,6 @@ public class Book extends BaseEntity {
         this.author = author;
     }
 
-    public String getPress() {
-        return press;
-    }
-
-    public void setPress(String press) {
-        this.press = press;
-    }
-
-    public String getCarrierForm() {
-        return carrierForm;
-    }
-
-    public void setCarrierForm(String carrierForm) {
-        this.carrierForm = carrierForm;
-    }
-
     public String getLanguage() {
         return language;
     }
@@ -123,14 +108,6 @@ public class Book extends BaseEntity {
 
     public void setSummary(String summary) {
         this.summary = summary;
-    }
-
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
     }
 
     public String getKeywords() {
@@ -251,5 +228,37 @@ public class Book extends BaseEntity {
 
     public void setDelete(Boolean delete) {
         isDelete = delete;
+    }
+
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
+    public String getBinding() {
+        return binding;
+    }
+
+    public void setBinding(String binding) {
+        this.binding = binding;
+    }
+
+    public String getIsbn10() {
+        return isbn10;
+    }
+
+    public void setIsbn10(String isbn10) {
+        this.isbn10 = isbn10;
+    }
+
+    public String getIsbn13() {
+        return isbn13;
+    }
+
+    public void setIsbn13(String isbn13) {
+        this.isbn13 = isbn13;
     }
 }
