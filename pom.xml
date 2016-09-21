@@ -52,6 +52,9 @@
 
         <!-- junit -->
         <junit.version>4.12</junit.version>
+
+        <!-- lucene -->
+        <lucene.version>6.2.0</lucene.version>
     </properties>
 
     <dependencies>
@@ -310,6 +313,24 @@
             <version>${commons.pool.version}</version>
         </dependency>
         <!-- commoms end -->
+
+        <!-- lucene start -->
+		<dependency>
+		    <groupId>org.apache.lucene</groupId>
+		    <artifactId>lucene-core</artifactId>
+		    <version>${lucene.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.lucene</groupId>
+		    <artifactId>lucene-queryparser</artifactId>
+		    <version>${lucene.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.lucene</groupId>
+		    <artifactId>lucene-analyzers-common</artifactId>
+		    <version>${lucene.version}</version>
+		</dependency>
+        <!-- lucene start -->
 
     </dependencies>
 
