@@ -1,44 +1,52 @@
 package com.zhixing101.wechat.api.entity;
 
+import java.sql.Timestamp;
+
 /**
- * User的实体类
- * Created by adam on 11/12/15.
+ * User的实体类 Created by adam on 11/12/15.
  */
 public class User extends BaseEntity {
 
-    private Integer id;             //用户ID
-    private String userName;        //用户名
-    private String nikeName;        //昵称 微信获取
-    private String password;        //密码
-    private String email;           //邮箱
-    private boolean sex;            //性别
-    private String mobile;          //电话
-    private String openId;          //微信的openId
-    private String userImage;       //用户头像
-    private boolean isDelete;       //是否删除
+    private Long id; // ID
+    private String username; // 用户名
+    private String nickname; // 微信昵称
+    private String password; // 密码
+    private String wechatOpenId; // 微信OpenID
+    private String wechatId; // 微信号
+    private String mobilePhone; // 手机
+    private String qq; // QQ
+    private String weibo; // 新浪微博
+    private String email; // 电子邮箱
+    private Integer sex; // 性别
+    private String userImage; // 用户头像
+    private Long createUser; // 创建者
+    private Timestamp createTime; // 创建时间
+    private Long updateUser; // 更新者
+    private Timestamp updateTime; // 更新时间
+    private Integer isDeleted; // 是否删除
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getNikeName() {
-        return nikeName;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setNikeName(String nikeName) {
-        this.nikeName = nikeName;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public String getPassword() {
@@ -49,6 +57,46 @@ public class User extends BaseEntity {
         this.password = password;
     }
 
+    public String getWechatOpenId() {
+        return wechatOpenId;
+    }
+
+    public void setWechatOpenId(String wechatOpenId) {
+        this.wechatOpenId = wechatOpenId;
+    }
+
+    public String getWechatId() {
+        return wechatId;
+    }
+
+    public void setWechatId(String wechatId) {
+        this.wechatId = wechatId;
+    }
+
+    public String getMobilePhone() {
+        return mobilePhone;
+    }
+
+    public void setMobilePhone(String mobilePhone) {
+        this.mobilePhone = mobilePhone;
+    }
+
+    public String getQq() {
+        return qq;
+    }
+
+    public void setQq(String qq) {
+        this.qq = qq;
+    }
+
+    public String getWeibo() {
+        return weibo;
+    }
+
+    public void setWeibo(String weibo) {
+        this.weibo = weibo;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -57,28 +105,12 @@ public class User extends BaseEntity {
         this.email = email;
     }
 
-    public boolean isSex() {
+    public Integer getSex() {
         return sex;
     }
 
-    public void setSex(boolean sex) {
+    public void setSex(Integer sex) {
         this.sex = sex;
-    }
-
-    public String getMobile() {
-        return mobile;
-    }
-
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
-    }
-
-    public String getOpenId() {
-        return openId;
-    }
-
-    public void setOpenId(String openId) {
-        this.openId = openId;
     }
 
     public String getUserImage() {
@@ -89,11 +121,44 @@ public class User extends BaseEntity {
         this.userImage = userImage;
     }
 
-    public boolean isDelete() {
-        return isDelete;
+    public Long getCreateUser() {
+        return createUser;
     }
 
-    public void setDelete(boolean delete) {
-        isDelete = delete;
+    public void setCreateUser(Long createUser) {
+        this.createUser = createUser;
     }
+
+    public Timestamp getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Timestamp createTime) {
+        this.createTime = createTime;
+    }
+
+    public Long getUpdateUser() {
+        return updateUser;
+    }
+
+    public void setUpdateUser(Long updateUser) {
+        this.updateUser = updateUser;
+    }
+
+    public Timestamp getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Timestamp updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public Integer getIsDeleted() {
+        return isDeleted;
+    }
+
+    public void setIsDeleted(Integer isDeleted) {
+        this.isDeleted = isDeleted;
+    }
+
 }

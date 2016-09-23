@@ -2,131 +2,159 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.zhixing101.wechat.api.dao.BookMapper">
 
-    <resultMap id="bookResultMap" type="book">
-        <id column="id" property="id" jdbcType="INTEGER"/>
-        <result column="title_author" property="titleAuthor" jdbcType="VARCHAR"/>
-        <result column="title" property="title" jdbcType="VARCHAR"/>
-        <result column="version" property="version" jdbcType="VARCHAR"/>
-        <result column="publication" property="publication" jdbcType="VARCHAR"/>
-        <result column="author" property="author" jdbcType="VARCHAR"/>
-        <result column="press" property="press" jdbcType="VARCHAR"/>
-        <result column="carrier_form" property="carrierForm" jdbcType="VARCHAR"/>
-        <result column="language" property="language" jdbcType="VARCHAR"/>
-        <result column="general_note" property="generalNote" jdbcType="VARCHAR"/>
-        <result column="summary" property="summary" jdbcType="VARCHAR"/>
-        <result column="isbn" property="isbn" jdbcType="VARCHAR"/>
-        <result column="keywords" property="keywords" jdbcType="VARCHAR"/>
-        <result column="chn_book_cate_id" property="chnCateId" jdbcType="VARCHAR"/>
-        <result column="index_book_id" property="indexId" jdbcType="VARCHAR"/>
-        <result column="title_author" property="price" jdbcType="VARCHAR"/>
-        <result column="position" property="position" jdbcType="VARCHAR"/>
-        <result column="isBorrowed" property="isBorrowed" jdbcType="TINYINT"/>
-        <result column="front_cover_pic_id" property="frontCover" jdbcType="VARCHAR"/>
-        <result column="backbone_pic_id" property="backbone" jdbcType="VARCHAR"/>
-        <result column="back_cover_pic_id" property="backCover" jdbcType="VARCHAR"/>
-        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
-        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
-        <result column="isDelete" property="isDelete" jdbcType="TINYINT"/>
-        <association column="bookshelf_id" property="bookShelf" select="queryBookShelf"/>
-        <association column="create_user" property="creator" select="queryUser"/>
-        <association column="update_user" property="updateUser" select="queryUser"/>
-    </resultMap>
+	<resultMap id="bookResultMap" type="book">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="title_author" property="titleAuthor" jdbcType="VARCHAR" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
+		<result column="version" property="version" jdbcType="VARCHAR" />
+		<result column="publication" property="publication" jdbcType="VARCHAR" />
+		<result column="author" property="author" jdbcType="VARCHAR" />
+		<result column="publisher" property="publisher" jdbcType="VARCHAR" />
+		<result column="binding" property="binding" jdbcType="VARCHAR" />
+		<result column="language" property="language" jdbcType="VARCHAR" />
+		<result column="general_note" property="generalNote" jdbcType="VARCHAR" />
+		<result column="summary" property="summary" jdbcType="VARCHAR" />
+		<result column="isbn_10" property="isbn10" jdbcType="VARCHAR" />
+		<result column="isbn_13" property="isbn13" jdbcType="VARCHAR" />
+		<result column="keywords" property="keywords" jdbcType="VARCHAR" />
+		<result column="chn_cate_id" property="chnCateId" jdbcType="VARCHAR" />
+		<result column="index_id" property="indexId" jdbcType="VARCHAR" />
+		<result column="price" property="price" jdbcType="VARCHAR" />
+		<result column="position" property="position" jdbcType="VARCHAR" />
+		<result column="is_borrowed" property="isBorrowed" jdbcType="TINYINT" />
+		<result column="front_cover" property="frontCover" jdbcType="VARCHAR" />
+		<result column="backbone" property="backbone" jdbcType="VARCHAR" />
+		<result column="back_cover" property="backCover" jdbcType="VARCHAR" />
+		<result column="douban_image_url" property="doubanImageUrl"
+			jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="is_deleted" property="isDeleted" jdbcType="TINYINT" />
+		<association column="bookshelf_id" property="bookShelf"
+			select="queryBookShelf" />
+		<association column="create_user" property="creator"
+			select="queryUser" />
+		<association column="update_user" property="updateUser"
+			select="queryUser" />
+	</resultMap>
 
-    <resultMap id="bookShelfResultMap" type="bookShelf">
-        <id column="id" property="id" jdbcType="INTEGER"/>
-        <result column="name" property="name" jdbcType="VARCHAR"/>
-        <result column="floor" property="floor" jdbcType="VARCHAR"/>
-        <result column="room" property="room" jdbcType="VARCHAR"/>
-        <result column="bookshelf_pic_id" property="bookshelfPic" jdbcType="VARCHAR"/>
-        <result column="longtitude" property="longtitude" jdbcType="VARCHAR"/>
-        <result column="latitude" property="latitude" jdbcType="VARCHAR"/>
-        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
-        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
-        <result column="isDelete" property="isDelete" jdbcType="TINYINT"/>
-        <association column="book_storage_place_id" property="bookStoragePlace" select="queryBookStoragePlace"/>
-        <association column="create_user" property="creator" select="queryUser"/>
-        <association column="update_user" property="updateUser" select="queryUser"/>
-    </resultMap>
+	<resultMap id="bookShelfResultMap" type="bookShelf">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="floor" property="floor" jdbcType="VARCHAR" />
+		<result column="room" property="room" jdbcType="VARCHAR" />
+		<result column="bookshelf_pic" property="bookshelfPic"
+			jdbcType="VARCHAR" />
+		<result column="longtitude" property="longtitude" jdbcType="VARCHAR" />
+		<result column="latitude" property="latitude" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="is_deleted" property="isDeleted" jdbcType="TINYINT" />
+		<association column="book_storage_place_id" property="bookStoragePlace"
+			select="queryBookStoragePlace" />
+		<association column="create_user" property="creator"
+			select="queryUser" />
+		<association column="update_user" property="updateUser"
+			select="queryUser" />
+	</resultMap>
 
-    <resultMap id="bookStoragePlaceResultMap" type="bookStoragePlace">
-        <id column="id" property="id" jdbcType="INTEGER"/>
-        <result column="name" property="name" jdbcType="VARCHAR"/>
-        <result column="description" property="description" jdbcType="VARCHAR"/>
-        <result column="longtitude" property="longtitude" jdbcType="VARCHAR"/>
-        <result column="latitude" property="latitude" jdbcType="VARCHAR"/>
-        <result column="province" property="province" jdbcType="VARCHAR"/>
-        <result column="city" property="city" jdbcType="VARCHAR"/>
-        <result column="district" property="district" jdbcType="VARCHAR"/>
-        <result column="street" property="street" jdbcType="VARCHAR"/>
-        <result column="address" property="address" jdbcType="VARCHAR"/>
-        <result column="phone" property="phone" jdbcType="VARCHAR"/>
-        <result column="mobile" property="mobile" jdbcType="VARCHAR"/>
-        <result column="openTime" property="openTime" jdbcType="VARCHAR"/>
-        <result column="traffic" property="traffic" jdbcType="VARCHAR"/>
-        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
-        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
-        <result column="isDelete" property="isDelete" jdbcType="TINYINT"/>
-        <association column="owner_user_id" property="ownUser" select="queryUser"/>
-        <association column="create_user" property="creator" select="queryUser"/>
-        <association column="update_user" property="updateUser" select="queryUser"/>
-    </resultMap>
+	<resultMap id="bookStoragePlaceResultMap" type="bookStoragePlace">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="poi_id" property="poiId" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="description" property="description" jdbcType="VARCHAR" />
+		<result column="longtitude" property="longtitude" jdbcType="VARCHAR" />
+		<result column="latitude" property="latitude" jdbcType="VARCHAR" />
+		<result column="province" property="province" jdbcType="VARCHAR" />
+		<result column="city" property="city" jdbcType="VARCHAR" />
+		<result column="district" property="district" jdbcType="VARCHAR" />
+		<result column="street" property="street" jdbcType="VARCHAR" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="phone" property="phone" jdbcType="VARCHAR" />
+		<result column="mobile_phone" property="mobilePhone" jdbcType="VARCHAR" />
+		<result column="open_time" property="openTime" jdbcType="VARCHAR" />
+		<result column="traffic" property="traffic" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="is_deleted" property="isDeleted" jdbcType="TINYINT" />
+		<association column="owner_user_id" property="ownerUser"
+			select="queryUser" />
+		<association column="create_user" property="creator"
+			select="queryUser" />
+		<association column="update_user" property="updateUser"
+			select="queryUser" />
+	</resultMap>
 
-    <resultMap id="userResultMap" type="user">
-        <id column="id" property="id" jdbcType="INTEGER"/>
-        <result column="username" property="userName" jdbcType="VARCHAR"/>
-        <result column="nikename" property="nikeName" jdbcType="VARCHAR"/>
-        <result column="password" property="password" jdbcType="VARCHAR"/>
-        <result column="email" property="email" jdbcType="VARCHAR"/>
-        <result column="sex" property="sex" jdbcType="TINYINT"/>
-        <result column="mobile" property="mobile" jdbcType="VARCHAR"/>
-        <result column="openId" property="openId" jdbcType="VARCHAR"/>
-        <result column="userImage" property="userImage" jdbcType="VARCHAR"/>
-        <result column="isDelete" property="isDelete" jdbcType="TINYINT"/>
-    </resultMap>
+	<resultMap id="userResultMap" type="user">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="nickname" property="nickname" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="wechat_open_id" property="wechatOpenId"
+			jdbcType="VARCHAR" />
+		<result column="wechat_id" property="wechatId" jdbcType="VARCHAR" />
+		<result column="mobile_phone" property="mobilePhone" jdbcType="VARCHAR" />
+		<result column="qq" property="qq" jdbcType="VARCHAR" />
+		<result column="weibo" property="weibo" jdbcType="VARCHAR" />
+		<result column="email" property="email" jdbcType="VARCHAR" />
+		<result column="sex" property="sex" jdbcType="TINYINT" />
+		<result column="user_image" property="userImage" jdbcType="VARCHAR" />
+		<result column="create_user" property="createUser" jdbcType="BIGINT" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_user" property="updateUser" jdbcType="BIGINT" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="is_deleted" property="isDeleted" jdbcType="TINYINT" />
+	</resultMap>
 
-    <insert id="saveBook">
-        INSERT INTO mst_book (title_author, title, version, author, publication, press, carrier_form, language,
-        general_note, summary, isbn, keywords, chn_book_cate_id, index_book_id, price, bookshelf_id, position,
-        isBorrowed, front_cover_pic_id, backbone_pic_id, back_cover_pic_id, create_user, create_time, update_user,
-        update_time, isDelete)
-        VALUES
-	    (#{book.titleAuthor},#{book.title},#{book.version},#{book.author},#{book.publication},#{book.press},
-	    #{book.carrierForm},#{book.language},#{book.generalNote},#{book.summary},
-	    #{book.isbn},#{book.keywords},#{book.chnCateId},#{book.indexId},#{book.price},#{book.bookShelf.id},
-	    #{book.position},#{book.isBorrowed},#{book.frontCover},#{book.backbone},
-	    #{book.backCover},#{book.creator.id},#{book.createTime},#{book.updateUser.id},#{book.updateTime},#{book.isDelete})
-    </insert>
+	<insert id="saveBook">
+		INSERT INTO mst_book (title_author, title, version,
+		author, publication,
+		press, carrier_form, language,
+		general_note,
+		summary, isbn, keywords, chn_book_cate_id, index_book_id, price,
+		bookshelf_id, position,
+		isBorrowed, front_cover_pic_id,
+		backbone_pic_id, back_cover_pic_id, create_user,
+		create_time,
+		update_user,
+		update_time, isDelete)
+		VALUES
+		(#{book.titleAuthor},#{book.title},#{book.version},#{book.author},#{book.publication},#{book.press},
+		#{book.carrierForm},#{book.language},#{book.generalNote},#{book.summary},
+		#{book.isbn},#{book.keywords},#{book.chnCateId},#{book.indexId},#{book.price},#{book.bookShelf.id},
+		#{book.position},#{book.isBorrowed},#{book.frontCover},#{book.backbone},
+		#{book.backCover},#{book.creator.id},#{book.createTime},#{book.updateUser.id},#{book.updateTime},#{book.isDelete})
+	</insert>
 
-    <update id="updateBook">
+	<update id="updateBook">
 
-    </update>
+	</update>
 
-    <delete id="deleteBook">
-        UPDATE mst_book SET isDelete = 0 where id = #{id}
-    </delete>
+	<delete id="deleteBook">
+		UPDATE mst_book SET isDeleted = 1 where id = #{id}
+	</delete>
 
-    <select id="queryAllBooks" resultMap="bookResultMap">
-        SELECT * FROM mst_book where isDelete = 1
-    </select>
+	<select id="queryAllBooks" resultMap="bookResultMap">
+		SELECT * FROM mst_book WHERE isDeleted = 0
+	</select>
 
-    <select id="findBookById" resultMap="bookResultMap">
-        SELECT * FROM mst_book WHERE id = #{id} AND isDelete = 1
-    </select>
+	<select id="findBookById" resultMap="bookResultMap">
+		SELECT * FROM mst_book WHERE id = #{id} AND isDeleted = 0
+	</select>
 
-    <select id="queryBooksByParams" resultMap="bookResultMap">
-        SELECT * FROM mst_book WHERE #{col} = #{val} AND isDelete = 1
-    </select>
+	<select id="queryBooksByParams" resultMap="bookResultMap">
+		SELECT * FROM mst_book WHERE #{col} = #{val} AND isDeleted = 0
+	</select>
 
+	<select id="queryBookStoragePlace" resultMap="bookStoragePlaceResultMap">
+		SELECT * FROM mst_book_storage_place WHERE id = #{id} AND isDeleted = 0
+	</select>
 
-    <select id="queryBookStoragePlace" resultMap="bookStoragePlaceResultMap">
-        SELECT * FROM mst_book_storage_place where id = #{id}
-    </select>
+	<select id="queryBookShelf" resultMap="bookShelfResultMap">
+		SELECT * FROM mst_bookshelf WHERE id = #{id} AND isDeleted = 0
+	</select>
 
-    <select id="queryBookShelf" resultMap="bookShelfResultMap">
-        SELECT * FROM mst_bookshelf where id = #{id}
-    </select>
-
-    <select id="queryUser" resultMap="userResultMap">
-        SELECT * FROM mst_user where id = #{id}
-    </select>
+	<select id="queryUser" resultMap="userResultMap">
+		SELECT * FROM mst_user WHERE id = #{id} AND isDeleted = 0
+	</select>
 </mapper>

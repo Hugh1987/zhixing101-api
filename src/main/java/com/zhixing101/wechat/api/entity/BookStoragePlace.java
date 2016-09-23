@@ -7,33 +7,42 @@ import java.sql.Timestamp;
  */
 public class BookStoragePlace extends BaseEntity {
 
-    private Integer id;                 //id
-    private String name;                //存放点名称
-    private String description;         //存放点描述
-    private String longtitude;          //经度
-    private String latitude;            //纬度
-    private String province;            //省份
-    private String city;                //城市
-    private String district;            //区县
-    private String street;              //街道
-    private String address;             //地址
-    private String phone;               //电话
-    private String mobile;              //手机
-    private User ownUser;               //所有人
-    private String openTime;            //开放时间
-    private String traffic;             //交通路线
-    private User creator;               //创建人
-    private Timestamp createTime;       //创建时间
-    private User updateUser;            //更新人
-    private Timestamp updateTime;       //更新时间
-    private boolean isDetele;           //删除
+    private Long id; // ID
+    private String poiId; // 位置数据POI ID
+    private String name; // 存放点名称
+    private String description; // 存放点描述
+    private String longtitude; // 经度
+    private String latitude; // 纬度
+    private String province; // 省份
+    private String city; // 城市
+    private String district; // 区县
+    private String street; // 街道
+    private String address; // 详细地址
+    private String phone; // 联系电话
+    private String mobilePhone; // 手机
+    private User ownerUser; // 存放点所有人
+    private String openTime; // 开放时间
+    private String traffic; // 交通
+    private User creator; // 创建者
+    private Timestamp createTime; // 创建时间
+    private User updateUser; // 更新者
+    private Timestamp updateTime; // 更新时间
+    private Integer isDeteled; // 删除标志
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getPoiId() {
+        return poiId;
+    }
+
+    public void setPoiId(String poiId) {
+        this.poiId = poiId;
     }
 
     public String getName() {
@@ -116,20 +125,20 @@ public class BookStoragePlace extends BaseEntity {
         this.phone = phone;
     }
 
-    public String getMobile() {
-        return mobile;
+    public String getMobilePhone() {
+        return mobilePhone;
     }
 
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
+    public void setMobilePhone(String mobilePhone) {
+        this.mobilePhone = mobilePhone;
     }
 
-    public User getOwnUser() {
-        return ownUser;
+    public User getOwnerUser() {
+        return ownerUser;
     }
 
-    public void setOwnUser(User ownUser) {
-        this.ownUser = ownUser;
+    public void setOwnerUser(User ownerUser) {
+        this.ownerUser = ownerUser;
     }
 
     public String getOpenTime() {
@@ -180,11 +189,12 @@ public class BookStoragePlace extends BaseEntity {
         this.updateTime = updateTime;
     }
 
-    public boolean isDetele() {
-        return isDetele;
+    public Integer getIsDeteled() {
+        return isDeteled;
     }
 
-    public void setDetele(boolean detele) {
-        isDetele = detele;
+    public void setIsDeteled(Integer isDeteled) {
+        this.isDeteled = isDeteled;
     }
+
 }
