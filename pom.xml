@@ -331,6 +331,12 @@
 		    <version>${lucene.version}</version>
 		</dependency>
         <!-- lucene end -->
+		<!-- 中文分词 -->
+		<dependency>
+			<groupId>org.wltea</groupId>
+			<artifactId>analyzer</artifactId>
+			<version>2012_u6</version>
+		</dependency>
 
     </dependencies>
 
