@@ -3,46 +3,45 @@ package com.zhixing101.wechat.api.entity;
 import java.sql.Timestamp;
 
 /**
- * 图书实体类
- * Created by adam on 10/9/16.
+ * 图书实体类 Created by adam on 10/9/16.
  */
 public class Book extends BaseEntity {
 
-    private Integer id;                 //ID
-    private String titleAuthor;         //题名与责任者
-    private String title;               //题名
-    private String version;             //版本
-    private String publication;         //出版发行项
-    private String author;              //作者
-    private String publisher;           //出版社
-    private String binding;             //载体形态
-    private String language;            //语种
-    private String generalNote;         //一般附注
-    private String summary;             //摘要
-    private String isbn10;              //isbn10
-    private String isbn13;              //isbn13
-    private String keywords;            //关键词
-    private String chnCateId;           //中图法分类号
-    private String indexId;             //索书号
-    private String price;               //定价
-    private BookShelf bookShelf;        //书架ID
-    private String position;            //具体位置
-    private Boolean isBorrowed;         //是否出借状态
-    private String frontCover;          //封面图
-    private String backbone;            //书脊图
-    private String backCover;           //封底图
-    private User creator;               //发布人
-    private Timestamp createTime;       //发布时间
-    private User updateUser;            //更新人
-    private Timestamp updateTime;       //更新时间
-    private Boolean isDelete;           //删除状态
+    private Long id; // ID
+    private String titleAuthor; // 题名与责任者
+    private String title; // 题名
+    private String version; // 版本
+    private String publication; // 出版发行项
+    private String author; // 作者
+    private String publisher; // 出版社
+    private String binding; // 载体形态项
+    private String language; // 语言
+    private String generalNote; // 一般附注项
+    private String summary; // 摘要
+    private String isbn10; // ISBN_10
+    private String isbn13; // ISBN_13
+    private String keywords; // 主题词
+    private String chnCateId; // 中图法分类号
+    private String indexId; // 索书号
+    private String price; // 定价
+    private Bookshelf bookshelf; // 所属书架
+    private String position; // 具体存放位置
+    private Integer isBorrowed; // 借阅状态
+    private String frontCover; // 正面照片ID
+    private String backbone; // 书脊照片ID
+    private String backCover; // 封底照片ID
+    private String doubanImageUrl; // 豆瓣图书图片URL
+    private User creator; // 创建者
+    private Timestamp createTime; // 创建时间
+    private User updateUser; // 更新者
+    private Timestamp updateTime; // 更新时间
+    private Integer isDeleted; // 删除标志
 
-
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -86,6 +85,22 @@ public class Book extends BaseEntity {
         this.author = author;
     }
 
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
+    public String getBinding() {
+        return binding;
+    }
+
+    public void setBinding(String binding) {
+        this.binding = binding;
+    }
+
     public String getLanguage() {
         return language;
     }
@@ -108,6 +123,22 @@ public class Book extends BaseEntity {
 
     public void setSummary(String summary) {
         this.summary = summary;
+    }
+
+    public String getIsbn10() {
+        return isbn10;
+    }
+
+    public void setIsbn10(String isbn10) {
+        this.isbn10 = isbn10;
+    }
+
+    public String getIsbn13() {
+        return isbn13;
+    }
+
+    public void setIsbn13(String isbn13) {
+        this.isbn13 = isbn13;
     }
 
     public String getKeywords() {
@@ -142,12 +173,12 @@ public class Book extends BaseEntity {
         this.price = price;
     }
 
-    public BookShelf getBookShelf() {
-        return bookShelf;
+    public Bookshelf getBookshelf() {
+        return bookshelf;
     }
 
-    public void setBookShelf(BookShelf bookShelf) {
-        this.bookShelf = bookShelf;
+    public void setBookshelf(Bookshelf bookshelf) {
+        this.bookshelf = bookshelf;
     }
 
     public String getPosition() {
@@ -158,12 +189,12 @@ public class Book extends BaseEntity {
         this.position = position;
     }
 
-    public Boolean getBorrowed() {
+    public Integer getIsBorrowed() {
         return isBorrowed;
     }
 
-    public void setBorrowed(Boolean borrowed) {
-        isBorrowed = borrowed;
+    public void setIsBorrowed(Integer isBorrowed) {
+        this.isBorrowed = isBorrowed;
     }
 
     public String getFrontCover() {
@@ -188,6 +219,14 @@ public class Book extends BaseEntity {
 
     public void setBackCover(String backCover) {
         this.backCover = backCover;
+    }
+
+    public String getDoubanImageUrl() {
+        return doubanImageUrl;
+    }
+
+    public void setDoubanImageUrl(String doubanImageUrl) {
+        this.doubanImageUrl = doubanImageUrl;
     }
 
     public User getCreator() {
@@ -222,43 +261,12 @@ public class Book extends BaseEntity {
         this.updateTime = updateTime;
     }
 
-    public Boolean getDelete() {
-        return isDelete;
+    public Integer getIsDeleted() {
+        return isDeleted;
     }
 
-    public void setDelete(Boolean delete) {
-        isDelete = delete;
+    public void setIsDeleted(Integer isDeleted) {
+        this.isDeleted = isDeleted;
     }
 
-    public String getPublisher() {
-        return publisher;
-    }
-
-    public void setPublisher(String publisher) {
-        this.publisher = publisher;
-    }
-
-    public String getBinding() {
-        return binding;
-    }
-
-    public void setBinding(String binding) {
-        this.binding = binding;
-    }
-
-    public String getIsbn10() {
-        return isbn10;
-    }
-
-    public void setIsbn10(String isbn10) {
-        this.isbn10 = isbn10;
-    }
-
-    public String getIsbn13() {
-        return isbn13;
-    }
-
-    public void setIsbn13(String isbn13) {
-        this.isbn13 = isbn13;
-    }
 }

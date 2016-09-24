@@ -5,27 +5,27 @@ import java.sql.Timestamp;
 /**
  * Created by adam on 10/9/16.
  */
-public class BookShelf extends BaseEntity {
+public class Bookshelf extends BaseEntity {
 
-    private Integer id;                 //id
-    private String name;                //名称
-    private String floor;               //楼层
-    private String room;                //房间号
-    private String bookshelfPic;        //书架图片
-    private String longtitude;          //经度
-    private String latitude;            //纬度
-    private BookStoragePlace bookStoragePlace;    //所属书籍存放点
-    private User creator;             //发布人
-    private Timestamp createTime;            //发布时间
-    private User updateUser;          //更新人
-    private Timestamp updateTime;            //更新时间
-    private Boolean isDelete;           //删除状态
+    private Long id; // ID
+    private String name; // 书架名
+    private String floor; // 楼层
+    private String room; // 房间号
+    private String bookshelfPic; // 书架图片ID
+    private String longtitude; // 经度
+    private String latitude; // 纬度
+    private BookStoragePlace bookStoragePlace; // 所属书籍存放点
+    private User creator; // 创建者
+    private Timestamp createTime; // 创建时间
+    private User updateUser; // 更新者
+    private Timestamp updateTime; // 更新时间
+    private Integer isDeleted; // 删除标志
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -117,11 +117,12 @@ public class BookShelf extends BaseEntity {
         this.updateTime = updateTime;
     }
 
-    public Boolean getDelete() {
-        return isDelete;
+    public Integer getIsDeleted() {
+        return isDeleted;
     }
 
-    public void setDelete(Boolean delete) {
-        isDelete = delete;
+    public void setIsDeleted(Integer isDeleted) {
+        this.isDeleted = isDeleted;
     }
+
 }
