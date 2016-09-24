@@ -34,6 +34,7 @@ public class BookServiceImplTest extends Junit4BaseTest {
     }
 
     @Test
+    @Ignore
     public void testQueryAllBooks() throws Exception {
 //        List<Book> bookList = bookService.queryAllBooks();
 //        logger.debug("there are " + bookList.size() + " books");
@@ -42,5 +43,14 @@ public class BookServiceImplTest extends Junit4BaseTest {
 //        }
         logger.debug("test");
         System.out.println("1231231123");
+    }
+
+    @Test
+    public void testSaveBookByISBN(){
+        try {
+            bookService.saveBookByISBN("9787111128069");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
