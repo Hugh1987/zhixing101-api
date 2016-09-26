@@ -127,16 +127,27 @@ public class SearchEngineServiceImpl extends BasicService implements SearchEngin
             doc.add(new TextField("summary", book.getSummary(), Field.Store.YES));
             doc.add(new StringField("isbn10", book.getIsbn10(), Field.Store.YES));
             doc.add(new StringField("isbn13", book.getIsbn13(), Field.Store.YES));
+
+            logger.info("start add book");
+            logger.info("id : " + String.valueOf(book.getId()));
+            logger.info("title : " + book.getTitle());
+            logger.info("version : " + book.getVersion());
+            logger.info("author : " + book.getAuthor());
+            logger.info("isbn10 : " + book.getIsbn10());
+            logger.info("isbn13 : " + book.getIsbn13());
+
             writer.addDocument(doc);
 
             writer.commit();
             writer.close();
 
+            logger.info("add book succeed");
+            return true;
         } catch (IOException e) {
             e.printStackTrace();
+            logger.info("add book failed");
             return false;
         }
-        return true;
     }
 
 }
