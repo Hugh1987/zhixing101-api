@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Created by adam on 10/9/16.
  */
-@Service("bookService")
+@Service("bookServiceImpl")
 public class BookServiceImpl extends BasicService implements BookService {
 
     /**

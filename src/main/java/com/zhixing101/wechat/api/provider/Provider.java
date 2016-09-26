@@ -1,4 +1,4 @@
-package com.zhixing101.wechat.api.provide;
+package com.zhixing101.wechat.api.provider;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
