@@ -46,5 +46,5 @@ public interface BookService {
      * @param isbn
      * @return
      */
-    Book saveBookByISBN(String isbn);
+    Book findBookByISBN(String isbn);
 }

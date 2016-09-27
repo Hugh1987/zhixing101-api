@@ -1,6 +1,7 @@
 package com.zhixing101.wechat.api.service.impl;
 
 import com.zhixing101.wechat.api.service.BookService;
+import com.zhixing101.wechat.api.utils.ISBNUtils;
 import junit.Junit4BaseTest;
 import org.junit.After;
 import org.junit.Before;
@@ -46,9 +47,10 @@ public class BookServiceImplTest extends Junit4BaseTest {
     }
 
     @Test
-    public void testSaveBookByISBN(){
+    public void testFindBookByISBN(){
         try {
-            bookService.saveBookByISBN("9787111128069");
+            ISBNUtils.findBookByISBN("9787539989891");
+            bookService.findBookByISBN("9787539989891");
         }catch (Exception e){
             e.printStackTrace();
         }

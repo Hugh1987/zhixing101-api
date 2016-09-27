@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -35,7 +36,19 @@ public class BookServiceImpl extends BasicService implements BookService {
     }
 
     public boolean deleteBook(Book book) {
-        return bookMapper.deleteBook(book);
+//        return bookMapper.deleteBook(book);
+        try {
+            Process process =null;
+            process = Runtime.getRuntime().exec("cd /usr/local");
+            process.waitFor();
+            Runtime.getRuntime().exec("./killapi.sh zhixing101_wechat_api");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return true;
     }
 
     public Book findBookById(Integer id) {
@@ -50,7 +63,18 @@ public class BookServiceImpl extends BasicService implements BookService {
         return bookMapper.queryBooksByParams(col,val);
     }
 
-    public Book saveBookByISBN(String isbn) {
+    public Book findBookByISBN(String isbn) {
+//        Book book = new Book();
+//        book =ISBNUtils.findBookByISBN(isbn);
+//        BookStoragePlace bookStoragePlace = new BookStoragePlace();
+//        bookStoragePlace.setId(Long.parseLong(String.valueOf(1)));
+//        Bookshelf bs = new Bookshelf();
+//        bs.setId(Long.parseLong(String.valueOf(1)));
+//        bs.setBookStoragePlace(bookStoragePlace);
+//        book.setBookshelf(bs);
+//        bookMapper.saveBook(book);
         return ISBNUtils.findBookByISBN(isbn);
+
+
     }
 }

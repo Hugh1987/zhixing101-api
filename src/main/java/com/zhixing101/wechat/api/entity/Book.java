@@ -268,5 +268,4 @@ public class Book extends BaseEntity {
     public void setIsDeleted(Integer isDeleted) {
         this.isDeleted = isDeleted;
     }
-
 }

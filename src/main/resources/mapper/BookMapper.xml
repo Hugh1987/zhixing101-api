@@ -25,17 +25,13 @@
 		<result column="front_cover" property="frontCover" jdbcType="VARCHAR" />
 		<result column="backbone" property="backbone" jdbcType="VARCHAR" />
 		<result column="back_cover" property="backCover" jdbcType="VARCHAR" />
-		<result column="douban_image_url" property="doubanImageUrl"
-			jdbcType="VARCHAR" />
+		<result column="douban_image_url" property="doubanImageUrl" jdbcType="VARCHAR" />
 		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
 		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
 		<result column="is_deleted" property="isDeleted" jdbcType="TINYINT" />
-		<association column="bookshelf_id" property="bookShelf"
-			select="queryBookShelf" />
-		<association column="create_user" property="creator"
-			select="queryUser" />
-		<association column="update_user" property="updateUser"
-			select="queryUser" />
+		<association column="bookshelf_id" property="bookShelf" select="queryBookShelf" />
+		<association column="create_user" property="creator" select="queryUser" />
+		<association column="update_user" property="updateUser" select="queryUser" />
 	</resultMap>
 
 	<resultMap id="bookShelfResultMap" type="bookShelf">
@@ -43,19 +39,15 @@
 		<result column="name" property="name" jdbcType="VARCHAR" />
 		<result column="floor" property="floor" jdbcType="VARCHAR" />
 		<result column="room" property="room" jdbcType="VARCHAR" />
-		<result column="bookshelf_pic" property="bookshelfPic"
-			jdbcType="VARCHAR" />
+		<result column="bookshelf_pic" property="bookshelfPic" jdbcType="VARCHAR" />
 		<result column="longtitude" property="longtitude" jdbcType="VARCHAR" />
 		<result column="latitude" property="latitude" jdbcType="VARCHAR" />
 		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
 		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
 		<result column="is_deleted" property="isDeleted" jdbcType="TINYINT" />
-		<association column="book_storage_place_id" property="bookStoragePlace"
-			select="queryBookStoragePlace" />
-		<association column="create_user" property="creator"
-			select="queryUser" />
-		<association column="update_user" property="updateUser"
-			select="queryUser" />
+		<association column="book_storage_place_id" property="bookStoragePlace" select="queryBookStoragePlace" />
+		<association column="create_user" property="creator" select="queryUser" />
+		<association column="update_user" property="updateUser" select="queryUser" />
 	</resultMap>
 
 	<resultMap id="bookStoragePlaceResultMap" type="bookStoragePlace">
@@ -109,21 +101,23 @@
 	<insert id="saveBook">
 		INSERT INTO mst_book (title_author, title, version,
 		author, publication,
-		press, carrier_form, language,
+		publisher, binding, language,
 		general_note,
-		summary, isbn, keywords, chn_book_cate_id, index_book_id, price,
-		bookshelf_id, position,
-		isBorrowed, front_cover_pic_id,
-		backbone_pic_id, back_cover_pic_id, create_user,
+		summary, isbn_10,isbn_13, keywords, chn_cate_id, index_id, price,
+		position,
+		is_borrowed, front_cover,
+		backbone, back_cover, create_user,
 		create_time,
 		update_user,
-		update_time, isDelete)
+		update_time, is_deleted,
+		bookshelf_id)
 		VALUES
-		(#{book.titleAuthor},#{book.title},#{book.version},#{book.author},#{book.publication},#{book.press},
-		#{book.carrierForm},#{book.language},#{book.generalNote},#{book.summary},
-		#{book.isbn},#{book.keywords},#{book.chnCateId},#{book.indexId},#{book.price},#{book.bookShelf.id},
+		(#{book.titleAuthor},#{book.title},#{book.version},#{book.author},#{book.publication},#{book.publisher},
+		#{book.binding},#{book.language},#{book.generalNote},#{book.summary},
+		#{book.isbn10},#{book.isbn13},#{book.keywords},#{book.chnCateId},#{book.indexId},#{book.price},
 		#{book.position},#{book.isBorrowed},#{book.frontCover},#{book.backbone},
-		#{book.backCover},#{book.creator.id},#{book.createTime},#{book.updateUser.id},#{book.updateTime},#{book.isDelete})
+		#{book.backCover},#{book.creator.id},#{book.createTime},#{book.updateUser.id},#{book.updateTime},#{book.isDeleted}
+		,#{book.bookshelf.id})
 	</insert>
 
 	<update id="updateBook">
@@ -135,26 +129,26 @@
 	</delete>
 
 	<select id="queryAllBooks" resultMap="bookResultMap">
-		SELECT * FROM mst_book WHERE isDeleted = 0
+		SELECT * FROM mst_book WHERE is_deleted = 0
 	</select>
 
 	<select id="findBookById" resultMap="bookResultMap">
-		SELECT * FROM mst_book WHERE id = #{id} AND isDeleted = 0
+		SELECT * FROM mst_book WHERE id = #{id} AND is_deleted = 0
 	</select>
 
 	<select id="queryBooksByParams" resultMap="bookResultMap">
-		SELECT * FROM mst_book WHERE #{col} = #{val} AND isDeleted = 0
+		SELECT * FROM mst_book WHERE #{col} = #{val} AND is_deleted = 0
 	</select>
 
 	<select id="queryBookStoragePlace" resultMap="bookStoragePlaceResultMap">
-		SELECT * FROM mst_book_storage_place WHERE id = #{id} AND isDeleted = 0
+		SELECT * FROM mst_book_storage_place WHERE id = #{id} AND is_deleted = 0
 	</select>
 
 	<select id="queryBookShelf" resultMap="bookShelfResultMap">
-		SELECT * FROM mst_bookshelf WHERE id = #{id} AND isDeleted = 0
+		SELECT * FROM mst_bookshelf WHERE id = #{id} AND is_deleted = 0
 	</select>
 
 	<select id="queryUser" resultMap="userResultMap">
-		SELECT * FROM mst_user WHERE id = #{id} AND isDeleted = 0
+		SELECT * FROM mst_user WHERE id = #{id} AND is_deleted = 0
 	</select>
 </mapper>
