@@ -1,6 +1,5 @@
 package com.zhixing101.wechat.api.utils;
 
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.zhixing101.wechat.api.entity.Book;
 import org.slf4j.Logger;
@@ -29,14 +28,14 @@ public class ISBNUtils {
             String result = URLUtils.queryUrl(url);
             logger.debug("获取到了书籍的信息" + result);
             JSONObject jsonObject = JSONObject.parseObject(result);
-            JSONArray jsonArray = jsonObject.getJSONArray("author");
-            String author = "";
-            if (jsonArray != null){
-                for (int i = 0;i < jsonArray.size();i++){
-                    author += jsonArray.getJSONObject(i).toJSONString();
-                }
-            }
-            book.setAuthor(author);
+//            JSONArray jsonArray = jsonObject.getJSONArray("author");
+//            String author = "";
+//            if (jsonArray != null){
+//                for (int i = 0;i < jsonArray.size();i++){
+//                    author += jsonArray.toJSONString();
+//                }
+//            }
+            book.setAuthor(jsonObject.getJSONArray("author").toString());
             book.setSummary(jsonObject.getString("summary"));
             book.setTitle(jsonObject.getString("title"));
             book.setPublisher(jsonObject.getString("publisher"));
