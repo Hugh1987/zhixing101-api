@@ -317,28 +317,27 @@
         <!-- commoms end -->
 
         <!-- lucene start -->
-		<!--<dependency>-->
-		    <!--<groupId>org.apache.lucene</groupId>-->
-		    <!--<artifactId>lucene-core</artifactId>-->
-		    <!--<version>${lucene.version}</version>-->
-		<!--</dependency>-->
-		<!--<dependency>-->
-		    <!--<groupId>org.apache.lucene</groupId>-->
-		    <!--<artifactId>lucene-queryparser</artifactId>-->
-		    <!--<version>${lucene.version}</version>-->
-		<!--</dependency>-->
-		<!--<dependency>-->
-		    <!--<groupId>org.apache.lucene</groupId>-->
-		    <!--<artifactId>lucene-analyzers-common</artifactId>-->
-		    <!--<version>${lucene.version}</version>-->
-		<!--</dependency>-->
+		<dependency>
+		    <groupId>org.apache.lucene</groupId>
+		    <artifactId>lucene-core</artifactId>
+		    <version>${lucene.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.lucene</groupId>
+		    <artifactId>lucene-queryparser</artifactId>
+		    <version>${lucene.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.lucene</groupId>
+		    <artifactId>lucene-analyzers-common</artifactId>
+		    <version>${lucene.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.lucene</groupId>
+			<artifactId>lucene-analyzers-smartcn</artifactId>
+			<version>6.2.0</version>
+		</dependency>
         <!-- lucene end -->
-		<!-- 中文分词 -->
-		<!--<dependency>-->
-			<!--<groupId>org.wltea</groupId>-->
-			<!--<artifactId>analyzer</artifactId>-->
-			<!--<version>2012_u6</version>-->
-		<!--</dependency>-->
 
     </dependencies>
 
