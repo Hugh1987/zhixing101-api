@@ -21,9 +21,4 @@
 	<dubbo:service interface="com.zhixing101.wechat.api.service.BookService" ref="bookServiceImpl" retries="0" timeout="200000"/>
 
 	<bean id="bookServiceImpl" class="com.zhixing101.wechat.api.service.impl.BookServiceImpl" />
-
-	<dubbo:service interface="com.zhixing101.wechat.api.service.SearchEngineService"
-		ref="searchEngineServiceImpl" retries="0" timeout="200000" />
-
-	<bean id="searchEngineServiceImpl" class="com.zhixing101.wechat.api.service.impl.SearchEngineServiceImpl" />
 </beans>
