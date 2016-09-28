@@ -28,7 +28,7 @@ public interface BookMapper {
      * @param id
      * @return
      */
-    Book findBookById(@Param("id") Integer id);
+    Book findBookById(@Param("id") Long id);
 
     /**
      * 获取所有的书籍信息
