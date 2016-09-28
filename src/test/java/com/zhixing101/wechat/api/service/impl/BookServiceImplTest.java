@@ -1,5 +1,6 @@
 package com.zhixing101.wechat.api.service.impl;
 
+import com.zhixing101.wechat.api.entity.Book;
 import com.zhixing101.wechat.api.service.BookService;
 import com.zhixing101.wechat.api.utils.ISBNUtils;
 import junit.Junit4BaseTest;
@@ -30,12 +31,6 @@ public class BookServiceImplTest extends Junit4BaseTest {
 
     @Test
     @Ignore
-    public void testSaveBook() throws Exception {
-
-    }
-
-    @Test
-    @Ignore
     public void testQueryAllBooks() throws Exception {
 //        List<Book> bookList = bookService.queryAllBooks();
 //        logger.debug("there are " + bookList.size() + " books");
@@ -49,10 +44,16 @@ public class BookServiceImplTest extends Junit4BaseTest {
     @Test
     public void testFindBookByISBN(){
         try {
-            ISBNUtils.findBookByISBN("9787539989891");
-            bookService.findBookByISBN("9787539989891");
+            ISBNUtils.findBookByISBN("9787111135104");
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void testSaveBook(){
+        Book book = ISBNUtils.findBookByISBN("9787111135104");
+        bookService.saveBook(book);
+        System.out.println(book.getAuthor());
     }
 }

@@ -98,7 +98,7 @@
 		<result column="is_deleted" property="isDeleted" jdbcType="TINYINT" />
 	</resultMap>
 
-	<insert id="saveBook">
+	<insert id="saveBook" parameterType="book" useGeneratedKeys="true" keyProperty="book.id">
 		INSERT INTO mst_book (title_author, title, version,
 		author, publication,
 		publisher, binding, language,
