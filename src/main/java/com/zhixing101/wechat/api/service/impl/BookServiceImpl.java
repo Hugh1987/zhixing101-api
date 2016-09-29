@@ -52,9 +52,10 @@ public class BookServiceImpl extends BasicService implements BookService {
     String indexPath = "/tmp/zhixing101/luceneIndex";
 
     public boolean saveBook(Book book) {
-        boolean addDbResult = bookMapper.saveBook(book);
-        boolean addIndexResult = addBookToIndex(book);
-        return addDbResult && addIndexResult;
+//        boolean addDbResult = bookMapper.saveBook(book);
+//        boolean addIndexResult = addBookToIndex(book);
+//        return addDbResult && addIndexResult;
+        return bookMapper.saveBook(book);
     }
 
     public boolean updateBook(Book book) {
