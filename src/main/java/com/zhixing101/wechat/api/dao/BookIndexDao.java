@@ -17,11 +17,13 @@ import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.search.TopScoreDocCollector;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.zhixing101.wechat.api.entity.Book;
 import com.zhixing101.wechat.api.utils.BookDocumentUtils;
 import com.zhixing101.wechat.api.utils.LuceneUtils;
 
+@Repository("bookIndexDao")
 public class BookIndexDao {
 
     @Autowired
@@ -144,7 +146,7 @@ public class BookIndexDao {
      * @param pageSize
      * @param pageIndex
      */
-    public List<Book> findBooksByKerword(String keyword, int pageSize, int pageIndex) {
+    public List<Book> findBooksByKeyword(String keyword, int pageSize, int pageIndex) {
 
         List<Book> books = new ArrayList<Book>();
         List<String> bookIds = getBookIdsByKeyword(keyword, pageSize, pageIndex);

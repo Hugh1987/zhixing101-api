@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.zhixing101.wechat.api.dao.BookIndexDao;
 import com.zhixing101.wechat.api.dao.BookMapper;
 import com.zhixing101.wechat.api.entity.Book;
 import com.zhixing101.wechat.api.service.BasicService;
@@ -28,31 +29,34 @@ public class BookServiceImpl extends BasicService implements BookService {
     @Autowired
     BookMapper bookMapper;
 
-    // indexPath
-    String indexPath = "/tmp/zhixing101/luceneIndex";
-
+    @Autowired
+    BookIndexDao bookIndexDao;
+    
     public boolean saveBook(Book book) {
+        bookIndexDao.save(book);
         return bookMapper.saveBook(book);
     }
 
     public boolean updateBook(Book book) {
+        bookIndexDao.update(book);
         return bookMapper.updateBook(book);
     }
 
     public boolean deleteBook(Book book) {
-        // return bookMapper.deleteBook(book);
-        try {
-            Process process = null;
-            process = Runtime.getRuntime().exec("cd /usr/local");
-            process.waitFor();
-            Runtime.getRuntime().exec("./killapi.sh zhixing101_wechat_api");
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        return true;
+        bookIndexDao.delete(book.getId());
+        return bookMapper.deleteBook(book);
+//        try {
+//            Process process = null;
+//            process = Runtime.getRuntime().exec("cd /usr/local");
+//            process.waitFor();
+//            Runtime.getRuntime().exec("./killapi.sh zhixing101_wechat_api");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//
+//        return true;
     }
 
     public Book findBookById(Long id) {
@@ -80,4 +84,7 @@ public class BookServiceImpl extends BasicService implements BookService {
         return ISBNUtils.findBookByISBN(isbn);
     }
 
+    public List<Book> pagingQueryBooksByKeyword(String keyword, int pageSize, int pageIndex) {
+        return bookIndexDao.findBooksByKeyword(keyword, pageSize, pageIndex);
+    }
 }
