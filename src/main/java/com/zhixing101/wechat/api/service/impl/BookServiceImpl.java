@@ -1,6 +1,5 @@
 package com.zhixing101.wechat.api.service.impl;
 
-import java.io.IOException;
 import java.util.List;
 
 import org.slf4j.Logger;
