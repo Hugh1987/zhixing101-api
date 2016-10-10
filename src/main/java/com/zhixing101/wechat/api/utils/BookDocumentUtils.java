@@ -4,10 +4,15 @@ import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.StringField;
 import org.apache.lucene.document.TextField;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import com.zhixing101.wechat.api.dao.BookMapper;
 import com.zhixing101.wechat.api.entity.Book;
 
 public class BookDocumentUtils {
+
+    @Autowired
+    static BookMapper bookMapper;
 
     /**
      * 把Book转为Document
@@ -15,7 +20,7 @@ public class BookDocumentUtils {
      * @param book
      * @return
      */
-    public static Document articleToDocument(Book book) {
+    public static Document bookToDocument(Book book) {
 
         Document doc = new Document();
         doc.add(new StringField("id", String.valueOf(book.getId()), Field.Store.YES));
@@ -34,11 +39,8 @@ public class BookDocumentUtils {
      * @param doc
      * @return
      */
-    public static Book documentToArticle(Document doc) {
+    public static Book documentToBook(Document doc) {
 
-        Book book = new Book();
-        book.setId(Long.valueOf(doc.get("id")));
-
-        return book;
+        return bookMapper.findBookById(Long.valueOf(doc.get("id")));
     }
 }
