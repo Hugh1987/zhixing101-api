@@ -47,4 +47,13 @@ public interface BookService {
      * @return
      */
     Book findBookByISBN(String isbn);
+
+    /**
+     * 根据关键词返回Book对象
+     * @param keyword
+     * @param pageSize
+     * @param pageIndex
+     * @return
+     */
+    List<Book> pagingQueryBooksByKeyword(String keyword, int pageSize, int pageIndex);
 }
