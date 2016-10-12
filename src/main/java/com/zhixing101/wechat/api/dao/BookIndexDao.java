@@ -146,18 +146,13 @@ public class BookIndexDao {
      * @param pageSize
      * @param pageIndex
      */
-    public List<Book> findBooksByKeyword(String keyword, int pageSize, int pageIndex) {
+    public List<String> findBooksByKeyword(String keyword, int pageSize, int pageIndex) {
 
         List<Book> books = new ArrayList<Book>();
         List<String> bookIds = getBookIdsByKeyword(keyword, pageSize, pageIndex);
 //        for (String bookId : bookIds) {
 //            books.add(bookMapper.findBookById(Long.valueOf(bookId)));
 //        }
-        for (String bookId : bookIds) {
-            Book book = new Book();
-            book.setId(Long.valueOf(bookId));
-            books.add(book);
-        }
-        return books;
+        return bookIds;
     }
 }

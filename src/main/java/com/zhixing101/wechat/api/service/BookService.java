@@ -55,5 +55,5 @@ public interface BookService {
      * @param pageIndex
      * @return
      */
-    List<Book> pagingQueryBooksByKeyword(String keyword, int pageSize, int pageIndex);
+    List<String> pagingQueryBooksByKeyword(String keyword, int pageSize, int pageIndex);
 }

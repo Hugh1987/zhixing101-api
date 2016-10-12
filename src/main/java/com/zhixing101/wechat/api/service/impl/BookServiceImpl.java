@@ -83,7 +83,7 @@ public class BookServiceImpl extends BasicService implements BookService {
         return ISBNUtils.findBookByISBN(isbn);
     }
 
-    public List<Book> pagingQueryBooksByKeyword(String keyword, int pageSize, int pageIndex) {
+    public List<String> pagingQueryBooksByKeyword(String keyword, int pageSize, int pageIndex) {
         return bookIndexDao.findBooksByKeyword(keyword, pageSize, pageIndex);
     }
 }
