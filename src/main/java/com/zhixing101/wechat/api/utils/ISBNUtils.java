@@ -12,7 +12,7 @@ public class ISBNUtils {
 
     private static final Logger logger = LoggerFactory.getLogger(ISBNUtils.class);
 
-    public static final String DBAPI_URL = "https://api.douban.com/v2/book/isbn/:";
+    public static final String DBAPI_URL = "https://api.douban.com/v2/book/isbn/";
 
     /**
      * 根据ISBN获取书籍信息
