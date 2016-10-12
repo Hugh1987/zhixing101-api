@@ -131,12 +131,11 @@ public class BookIndexDao {
         } catch (IOException e) {
 
             e.printStackTrace();
-            return result;
         } catch (ParseException e) {
 
             e.printStackTrace();
-            return result;
         }
+        return null;
     }
 
     /**
