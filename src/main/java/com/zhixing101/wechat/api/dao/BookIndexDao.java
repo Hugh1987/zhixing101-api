@@ -150,8 +150,13 @@ public class BookIndexDao {
 
         List<Book> books = new ArrayList<Book>();
         List<String> bookIds = getBookIdsByKeyword(keyword, pageSize, pageIndex);
+//        for (String bookId : bookIds) {
+//            books.add(bookMapper.findBookById(Long.valueOf(bookId)));
+//        }
         for (String bookId : bookIds) {
-            books.add(bookMapper.findBookById(Long.valueOf(bookId)));
+            Book book = new Book();
+            book.setId(Long.valueOf(bookId));
+            books.add(book);
         }
         return books;
     }
