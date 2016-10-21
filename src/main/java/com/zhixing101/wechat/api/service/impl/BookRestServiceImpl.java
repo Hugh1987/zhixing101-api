@@ -31,6 +31,10 @@ public class BookRestServiceImpl implements BookService {
         return false;
     }
 
+    public Book findBookById(Long id) {
+        return null;
+    }
+
     public Book findBookById(Integer id) {
         return null;
     }
@@ -47,5 +51,9 @@ public class BookRestServiceImpl implements BookService {
     @Path("findBookByISBN/{isbn}")
     public Book findBookByISBN(@PathParam("isbn")String isbn) {
         return ISBNUtils.findBookByISBN(isbn);
+    }
+
+    public List<String> pagingQueryBooksByKeyword(String keyword, int pageSize, int pageIndex) {
+        return null;
     }
 }

@@ -34,9 +34,9 @@
 	<bean id="bookServiceImpl" class="com.zhixing101.wechat.api.service.impl.BookServiceImpl" />
 	<bean id="bookServiceRestImpl" class="com.zhixing101.wechat.api.service.impl.BookRestServiceImpl" />
 
-	<dubbo:service interface="com.zhixing101.wechat.api.service.SearchEngineService" ref="searchEngineServiceImpl" protocol="dubbo"  retries="0" timeout="200000" />
+	<!--<dubbo:service interface="com.zhixing101.wechat.api.service.SearchEngineService" ref="searchEngineServiceImpl" protocol="dubbo"  retries="0" timeout="200000" />-->
 
-	<bean id="searchEngineServiceImpl" class="com.zhixing101.wechat.api.service.impl.SearchEngineServiceImpl" />
+	<!--<bean id="searchEngineServiceImpl" class="com.zhixing101.wechat.api.service.impl.SearchEngineServiceImpl" />-->
 
 
 </beans>

@@ -1,27 +1,20 @@
 package com.zhixing101.wechat.api.dao;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
+import com.zhixing101.wechat.api.entity.Book;
+import com.zhixing101.wechat.api.utils.LuceneUtils;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.cn.smart.SmartChineseAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.DirectoryReader;
-import org.apache.lucene.index.Term;
 import org.apache.lucene.queryparser.classic.MultiFieldQueryParser;
 import org.apache.lucene.queryparser.classic.ParseException;
-import org.apache.lucene.search.IndexSearcher;
-import org.apache.lucene.search.Query;
-import org.apache.lucene.search.ScoreDoc;
-import org.apache.lucene.search.TopDocs;
-import org.apache.lucene.search.TopScoreDocCollector;
+import org.apache.lucene.search.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.zhixing101.wechat.api.entity.Book;
-import com.zhixing101.wechat.api.utils.BookDocumentUtils;
-import com.zhixing101.wechat.api.utils.LuceneUtils;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository("bookIndexDao")
 public class BookIndexDao {
@@ -35,16 +28,16 @@ public class BookIndexDao {
      * @param book
      */
     public void save(Book book) {
-        // 1，把Book转为Document
-        Document doc = BookDocumentUtils.bookToDocument(book);
-
-        // 2，添加到索引库中
-        try {
-            LuceneUtils.getIndexWriter().addDocument(doc); // 添加
-            LuceneUtils.getIndexWriter().commit(); // 提交更改
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+//        // 1，把Book转为Document
+//        Document doc = BookDocumentUtils.bookToDocument(book);
+//
+//        // 2，添加到索引库中
+//        try {
+//            LuceneUtils.getIndexWriter().addDocument(doc); // 添加
+//            LuceneUtils.getIndexWriter().commit(); // 提交更改
+//        } catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
     }
 
     /**
@@ -55,14 +48,14 @@ public class BookIndexDao {
      * @param id
      */
     public void delete(Long id) {
-        try {
-            Term term = new Term("id", String.valueOf(id));
-
-            LuceneUtils.getIndexWriter().deleteDocuments(term); // 删除所有含有这个Term的Document
-            LuceneUtils.getIndexWriter().commit(); // 提交更改
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            Term term = new Term("id", String.valueOf(id));
+//
+//            LuceneUtils.getIndexWriter().deleteDocuments(term); // 删除所有含有这个Term的Document
+//            LuceneUtils.getIndexWriter().commit(); // 提交更改
+//        } catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
     }
 
     /**
@@ -71,15 +64,15 @@ public class BookIndexDao {
      * @param book
      */
     public void update(Book book) {
-        try {
-            Term term = new Term("id", String.valueOf(book.getId()));
-            Document doc = BookDocumentUtils.bookToDocument(book);
-
-            LuceneUtils.getIndexWriter().updateDocument(term, doc); // 更新就是先删除再添加
-            LuceneUtils.getIndexWriter().commit(); // 提交更改
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            Term term = new Term("id", String.valueOf(book.getId()));
+//            Document doc = BookDocumentUtils.bookToDocument(book);
+//
+//            LuceneUtils.getIndexWriter().updateDocument(term, doc); // 更新就是先删除再添加
+//            LuceneUtils.getIndexWriter().commit(); // 提交更改
+//        } catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
     }
 
     private List<String> getBookIdsByKeyword(String keyword, int pageSize, int pageIndex) {

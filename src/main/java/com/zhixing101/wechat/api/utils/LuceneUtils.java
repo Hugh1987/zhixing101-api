@@ -1,8 +1,5 @@
 package com.zhixing101.wechat.api.utils;
 
-import java.io.IOException;
-import java.nio.file.Paths;
-
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.cn.smart.SmartChineseAnalyzer;
 import org.apache.lucene.index.DirectoryReader;
@@ -13,6 +10,9 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
+import java.nio.file.Paths;
 
 public class LuceneUtils {
 
@@ -48,7 +48,7 @@ public class LuceneUtils {
 
     /**
      * 获取全局唯一的IndexReader对象
-     * 
+     *
      * @return
      */
     public static IndexReader getIndexReader() {
@@ -83,7 +83,7 @@ public class LuceneUtils {
 
     /**
      * 获取全局唯一的IndexWriter对象
-     * 
+     *
      * @return
      */
     public static IndexWriter getIndexWriter() {

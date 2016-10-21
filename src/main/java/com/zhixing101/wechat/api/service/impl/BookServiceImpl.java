@@ -1,18 +1,17 @@
 package com.zhixing101.wechat.api.service.impl;
 
-import java.util.List;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.zhixing101.wechat.api.dao.BookIndexDao;
 import com.zhixing101.wechat.api.dao.BookMapper;
 import com.zhixing101.wechat.api.entity.Book;
 import com.zhixing101.wechat.api.service.BasicService;
 import com.zhixing101.wechat.api.service.BookService;
 import com.zhixing101.wechat.api.utils.ISBNUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created by adam on 10/9/16.

@@ -1,13 +1,12 @@
 package com.zhixing101.wechat.api.utils;
 
+import com.zhixing101.wechat.api.dao.BookMapper;
+import com.zhixing101.wechat.api.entity.Book;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.StringField;
 import org.apache.lucene.document.TextField;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import com.zhixing101.wechat.api.dao.BookMapper;
-import com.zhixing101.wechat.api.entity.Book;
 
 public class BookDocumentUtils {
 
@@ -16,7 +15,7 @@ public class BookDocumentUtils {
 
     /**
      * 把Book转为Document
-     * 
+     *
      * @param book
      * @return
      */
@@ -35,7 +34,7 @@ public class BookDocumentUtils {
 
     /**
      * 把Document转为Book
-     * 
+     *
      * @param doc
      * @return
      */
