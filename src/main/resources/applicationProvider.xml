@@ -9,21 +9,34 @@
 	<dubbo:application name="zhixing101_wechat_api"  owner="zhixing" organization="zhixing" />
 	<dubbo:registry address="N/A" />
 	<!-- 使用multicast广播注册中心暴露发现服务地址 -->
-	<dubbo:registry address="multicast://224.5.6.7:1234?unicast=false" />
+	<!--<dubbo:registry address="multicast://224.5.6.7:1234?unicast=false" />-->
 	<!--dubbo集群开发，请激活下面条目，并注销上面的多播multicast -->
-	<!--<dubbo:registry protocol="zookeeper" address="${zookeeper.address}" />-->
+	<dubbo:registry protocol="zookeeper" address="${zookeeper.address}" />
 	<!-- 用dubbo协议在20880端口暴露服务 -->
-	<dubbo:protocol name="dubbo" port="${dubbo.port}" threadpool="cached" threads="500" dispatcher="all" />
+	<!--<dubbo:protocol name="dubbo" port="${dubbo.port}" threadpool="cached" threads="500" dispatcher="all" />-->
+
+	<!-- 定义dubbox的服务所在位置 -->
+	<dubbo:annotation package="com.zhixing101.wechat.api.service.impl"/>
+
+	<!-- dubbox的序列化选择 -->
+	<!-- kryo fst 可以自定义其序列化内容 实现SerializationOptimizer-->
+	<dubbo:protocol name="dubbo" serialization="kryo" />
+
+	<dubbo:protocol name="rest" port="8888" keepalive="true" server="netty" iothreads="5" threads="100" contextpath="services"/>
 
 
 	<!-- 暴露application接口 -->
     <!-- 平台服务的接口 -->
-	<dubbo:service interface="com.zhixing101.wechat.api.service.BookService" ref="bookServiceImpl" retries="0" timeout="200000"/>
+	<dubbo:service interface="com.zhixing101.wechat.api.service.BookService" ref="bookServiceImpl" protocol="dubbo" retries="0" timeout="200000"/>
+
+	<dubbo:service interface="com.zhixing101.wechat.api.service.BookService" ref="bookServiceRestImpl" protocol="rest" retries="0" timeout="200000"/>
 
 	<bean id="bookServiceImpl" class="com.zhixing101.wechat.api.service.impl.BookServiceImpl" />
+	<bean id="bookServiceRestImpl" class="com.zhixing101.wechat.api.service.impl.BookRestServiceImpl" />
 
-	<dubbo:service interface="com.zhixing101.wechat.api.service.SearchEngineService"
-		ref="searchEngineServiceImpl" retries="0" timeout="200000" />
+	<dubbo:service interface="com.zhixing101.wechat.api.service.SearchEngineService" ref="searchEngineServiceImpl" protocol="dubbo"  retries="0" timeout="200000" />
 
 	<bean id="searchEngineServiceImpl" class="com.zhixing101.wechat.api.service.impl.SearchEngineServiceImpl" />
+
+
 </beans>
