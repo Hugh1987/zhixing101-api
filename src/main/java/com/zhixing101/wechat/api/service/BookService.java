@@ -25,7 +25,7 @@ public interface BookService {
      * @param id
      * @return
      */
-    Book findBookById(Integer id);
+    Book findBookById(Long id);
 
     /**
      * 获取所有的书籍信息
@@ -47,4 +47,13 @@ public interface BookService {
      * @return
      */
     Book findBookByISBN(String isbn);
+
+    /**
+     * 根据关键词返回Book对象
+     * @param keyword
+     * @param pageSize
+     * @param pageIndex
+     * @return
+     */
+    List<String> pagingQueryBooksByKeyword(String keyword, int pageSize, int pageIndex);
 }
