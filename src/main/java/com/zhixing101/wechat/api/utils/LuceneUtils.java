@@ -20,7 +20,7 @@ public class LuceneUtils {
     private static final Logger logger = LoggerFactory.getLogger(LuceneUtils.class);
 
     // lucene索引存储路径
-    private static String indexPath = "/usr/local/zhixing101/luceneIndex";
+    private static String indexPath = "/usr/local/luceneIndex";
     // 索引目录
     private static Directory directory;
     // 分词器
@@ -62,12 +62,6 @@ public class LuceneUtils {
                         logger.info("IndexReader初始化成功");
                     } catch (Exception e) {
                         throw new RuntimeException(e);
-                    }finally {
-                        try {
-                            indexReader.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
                     }
                 }
             }
@@ -104,12 +98,6 @@ public class LuceneUtils {
                         logger.info("IndexWriter初始化成功");
                     } catch (Exception e) {
                         throw new RuntimeException(e);
-                    }finally {
-                        try {
-                            indexWriter.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
                     }
                 }
             }
