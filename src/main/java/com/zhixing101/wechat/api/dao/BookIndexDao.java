@@ -1,6 +1,7 @@
 package com.zhixing101.wechat.api.dao;
 
 import com.zhixing101.wechat.api.entity.Book;
+import com.zhixing101.wechat.api.utils.BookDocumentUtils;
 import com.zhixing101.wechat.api.utils.LuceneUtils;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.cn.smart.SmartChineseAnalyzer;
@@ -27,17 +28,19 @@ public class BookIndexDao {
      * 
      * @param book
      */
-    public void save(Book book) {
+    public void save(Book book) throws IOException {
 //        // 1，把Book转为Document
-//        Document doc = BookDocumentUtils.bookToDocument(book);
+        Document doc = BookDocumentUtils.bookToDocument(book);
 //
 //        // 2，添加到索引库中
-//        try {
-//            LuceneUtils.getIndexWriter().addDocument(doc); // 添加
-//            LuceneUtils.getIndexWriter().commit(); // 提交更改
-//        } catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
+        try {
+            LuceneUtils.getIndexWriter().addDocument(doc); // 添加
+            LuceneUtils.getIndexWriter().commit(); // 提交更改
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }finally {
+            LuceneUtils.getIndexReader().close();
+        }
     }
 
     /**
