@@ -1,9 +1,9 @@
 package com.zhixing101.wechat.api.utils;
 
+import com.alibaba.dubbo.common.logger.Logger;
+import com.alibaba.dubbo.common.logger.LoggerFactory;
 import com.alibaba.fastjson.JSONObject;
 import com.zhixing101.wechat.api.entity.Book;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Created by adam on 21/9/16.
