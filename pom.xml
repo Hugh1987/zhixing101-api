@@ -11,18 +11,6 @@
 
     <description>zhixing101-api</description>
 
-    <!-- person nexus -->
-    <repositories>
-        <repository>
-            <id>adam</id>
-            <name>adam nexus</name>
-            <layout>default</layout>
-            <url>http://www.ntjoytech.com:8081/nexus/content/groups/public</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -67,23 +55,6 @@
 
         <!-- lucene -->
         <lucene.version>6.2.0</lucene.version>
-
-
-        <zookeeper_version>3.4.6</zookeeper_version>
-        <zkclient_version>0.1</zkclient_version>
-        <curator_version>2.5.0</curator_version>
-        <cxf_version>3.1.8</cxf_version>
-        <javassist_version>3.15.0-GA</javassist_version>
-        <servlet_version>3.1.0</servlet_version>
-        <aopalliance_version>1.0</aopalliance_version>
-        <hibernate_validator_version>4.2.0.Final</hibernate_validator_version>
-
-        <jta_version>1.1</jta_version>
-        <aspectjweaver_version>1.7.2</aspectjweaver_version>
-        <dom4j_version>1.6.1</dom4j_version>
-        <cglib_version>3.0</cglib_version>
-        <jboss_version>3.0.7.Final</jboss_version>
-        <tomcat_version>8.0.11</tomcat_version>
     </properties>
 
     <dependencies>
@@ -91,20 +62,13 @@
         <dependency>
             <groupId>javax.transaction</groupId>
             <artifactId>jta</artifactId>
-            <version>${jta_version}</version>
+            <version>1.1</version>
         </dependency>
 
         <dependency>
             <groupId>aopalliance</groupId>
             <artifactId>aopalliance</artifactId>
-            <version>${aopalliance_version}</version>
-        </dependency>
-
-        <!-- hibernate-validator -->
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>${hibernate_validator_version}</version>
+            <version>1.0</version>
         </dependency>
 
         <!-- mysql-connector-java -->
@@ -271,14 +235,14 @@
         </dependency>
 
         <!--<dependency>-->
-            <!--<groupId>proxool</groupId>-->
-            <!--<artifactId>proxool</artifactId>-->
-            <!--<version>${proxool.version}</version>-->
+        <!--<groupId>proxool</groupId>-->
+        <!--<artifactId>proxool</artifactId>-->
+        <!--<version>${proxool.version}</version>-->
         <!--</dependency>-->
         <!--<dependency>-->
-            <!--<groupId>proxool</groupId>-->
-            <!--<artifactId>proxool-cglib</artifactId>-->
-            <!--<version>0.9.1</version>-->
+        <!--<groupId>proxool</groupId>-->
+        <!--<artifactId>proxool-cglib</artifactId>-->
+        <!--<version>0.9.1</version>-->
         <!--</dependency>-->
 
         <!-- junit -->
@@ -292,23 +256,22 @@
         <!-- dubbo jar -->
         <dependency>
             <groupId>com.alibaba</groupId>
-            <artifactId>dubbox</artifactId>
-            <version>2.8.4</version>
+            <artifactId>dubbo</artifactId>
+            <version>2.5.3</version>
             <!-- 去除重复jar包 -->
             <exclusions>
-            <!--
-                <exclusion>
-                    <groupId>org.jboss.netty</groupId>
-                    <artifactId>netty</artifactId>
-                </exclusion>
-                 -->
+                <!--
+                    <exclusion>
+                        <groupId>org.jboss.netty</groupId>
+                        <artifactId>netty</artifactId>
+                    </exclusion>
+                     -->
                 <exclusion>
                     <groupId>org.springframework</groupId>
                     <artifactId>spring</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
-
 
         <!-- commoms start -->
         <dependency>
@@ -354,113 +317,27 @@
         <!-- commoms end -->
 
         <!-- lucene start -->
-		<dependency>
-		    <groupId>org.apache.lucene</groupId>
-		    <artifactId>lucene-core</artifactId>
-		    <version>${lucene.version}</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.apache.lucene</groupId>
-		    <artifactId>lucene-queryparser</artifactId>
-		    <version>${lucene.version}</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.apache.lucene</groupId>
-		    <artifactId>lucene-analyzers-common</artifactId>
-		    <version>${lucene.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.lucene</groupId>
-			<artifactId>lucene-analyzers-smartcn</artifactId>
-			<version>6.2.0</version>
-		</dependency>
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-core</artifactId>
+            <version>${lucene.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-queryparser</artifactId>
+            <version>${lucene.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-analyzers-common</artifactId>
+            <version>${lucene.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-analyzers-smartcn</artifactId>
+            <version>6.2.0</version>
+        </dependency>
         <!-- lucene end -->
-
-        <!-- javax.servlet -->
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>${servlet_version}</version>
-        </dependency>
-
-        <!-- javax.ws.rs -->
-        <dependency>
-            <groupId>javax.ws.rs</groupId>
-            <artifactId>javax.ws.rs-api</artifactId>
-            <version>2.0</version>
-        </dependency>
-
-        <!-- javassist -->
-        <dependency>
-            <groupId>org.javassist</groupId>
-            <artifactId>javassist</artifactId>
-            <version>${javassist_version}</version>
-        </dependency>
-
-        <!-- zookeeper -->
-        <dependency>
-            <groupId>org.apache.zookeeper</groupId>
-            <artifactId>zookeeper</artifactId>
-            <version>${zookeeper_version}</version>
-        </dependency>
-
-        <!-- zkclient -->
-        <dependency>
-            <groupId>com.github.sgroschupf</groupId>
-            <artifactId>zkclient</artifactId>
-            <version>${zkclient_version}</version>
-        </dependency>
-
-        <!-- curator-framework -->
-        <dependency>
-            <groupId>org.apache.curator</groupId>
-            <artifactId>curator-framework</artifactId>
-            <version>${curator_version}</version>
-        </dependency>
-
-        <!-- cxf -->
-        <dependency>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-rt-frontend-simple</artifactId>
-            <version>${cxf_version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-rt-transports-http</artifactId>
-            <version>${cxf_version}</version>
-        </dependency>
-
-        <!-- jboss -->
-        <dependency>
-            <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-jaxrs</artifactId>
-            <version>${jboss_version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-client</artifactId>
-            <version>${jboss_version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-netty</artifactId>
-            <version>${jboss_version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-jdk-http</artifactId>
-            <version>${jboss_version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-jackson-provider</artifactId>
-            <version>${jboss_version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-jaxb-provider</artifactId>
-            <version>${jboss_version}</version>
-        </dependency>
 
     </dependencies>
 
@@ -601,14 +478,14 @@
                                 <exclude>**/impl/**</exclude>
                                 <exclude>**/dao/**</exclude>
                             </excludes>
-                            <!--<executions>-->
-                                <!--<execution>-->
-                                    <!--<phase>package</phase>-->
-                                    <!--<goals>-->
-                                        <!--<goal>jar</goal>-->
-                                    <!--</goals>-->
-                                <!--</execution>-->
-                            <!--</executions>-->
+                            <executions>
+                                <execution>
+                                    <phase>package</phase>
+                                    <goals>
+                                        <goal>jar</goal>
+                                    </goals>
+                                </execution>
+                            </executions>
                         </configuration>
                         <version>2.4</version>
                     </plugin>
