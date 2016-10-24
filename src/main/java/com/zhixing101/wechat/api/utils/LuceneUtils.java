@@ -1,5 +1,7 @@
 package com.zhixing101.wechat.api.utils;
 
+import com.alibaba.dubbo.common.logger.Logger;
+import com.alibaba.dubbo.common.logger.LoggerFactory;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.cn.smart.SmartChineseAnalyzer;
 import org.apache.lucene.index.DirectoryReader;
@@ -8,8 +10,6 @@ import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -62,6 +62,12 @@ public class LuceneUtils {
                         logger.info("IndexReader初始化成功");
                     } catch (Exception e) {
                         throw new RuntimeException(e);
+                    }finally {
+                        try {
+                            indexReader.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }
@@ -98,6 +104,12 @@ public class LuceneUtils {
                         logger.info("IndexWriter初始化成功");
                     } catch (Exception e) {
                         throw new RuntimeException(e);
+                    }finally {
+                        try {
+                            indexWriter.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }
