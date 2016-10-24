@@ -28,7 +28,7 @@ public class BookIndexDao {
      * 
      * @param book
      */
-    public void save(Book book) throws IOException {
+    public void save(Book book) {
 //        // 1，把Book转为Document
         Document doc = BookDocumentUtils.bookToDocument(book);
 //
@@ -39,7 +39,11 @@ public class BookIndexDao {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }finally {
-            LuceneUtils.getIndexReader().close();
+            try {
+                LuceneUtils.getIndexReader().close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
