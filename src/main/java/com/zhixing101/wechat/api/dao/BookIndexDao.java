@@ -38,14 +38,6 @@ public class BookIndexDao {
             LuceneUtils.getIndexWriter().commit(); // 提交更改
         } catch (Exception e) {
             throw new RuntimeException(e);
-        } finally {
-            if (LuceneUtils.getIndexWriter() != null){
-                try {
-                    LuceneUtils.getIndexWriter().close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
         }
     }
 
@@ -115,14 +107,15 @@ public class BookIndexDao {
             Query query = new MultiFieldQueryParser(fields, analyzer).parse(keyword);
 
             // doSearch
-//            searcher.search(query, collector);
+            searcher.search(query, collector);
 
             // TopDocs
-//            TopDocs topDoc collector.topDocs(start, pageSize);
-            TopDocs topDocs = searcher.search(query,10);
+            TopDocs topDocs = collector.topDocs(start, pageSize);
+//            TopDocs topDocs = searcher.search(query,10);
 
             // scoreDocs
             ScoreDoc[] scoreDocs = topDocs.scoreDocs;
+            System.out.println("length" + scoreDocs.length + "=======================");
 
             for (ScoreDoc scoreDoc : scoreDocs) {
 

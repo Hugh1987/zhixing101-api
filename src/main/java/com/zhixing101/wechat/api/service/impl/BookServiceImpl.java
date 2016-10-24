@@ -31,8 +31,9 @@ public class BookServiceImpl extends BasicService implements BookService {
     BookIndexDao bookIndexDao;
     
     public boolean saveBook(Book book) {
+        boolean flag = bookMapper.saveBook(book);
         bookIndexDao.save(book);
-        return bookMapper.saveBook(book);
+        return flag;
     }
 
     public boolean updateBook(Book book) {
