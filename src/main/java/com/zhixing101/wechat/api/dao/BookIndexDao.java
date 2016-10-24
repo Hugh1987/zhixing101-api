@@ -38,11 +38,13 @@ public class BookIndexDao {
             LuceneUtils.getIndexWriter().commit(); // 提交更改
         } catch (Exception e) {
             throw new RuntimeException(e);
-        }finally {
-            try {
-                LuceneUtils.getIndexReader().close();
-            } catch (IOException e) {
-                e.printStackTrace();
+        } finally {
+            if (LuceneUtils.getIndexWriter() != null){
+                try {
+                    LuceneUtils.getIndexWriter().close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
