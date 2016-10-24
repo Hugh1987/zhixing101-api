@@ -85,6 +85,7 @@ public class BookIndexDao {
     }
 
     private List<String> getBookIdsByKeyword(String keyword, int pageSize, int pageIndex) {
+        System.out.println("begin search by lucene");
 
         List<String> result = new ArrayList<String>();
 
@@ -114,10 +115,11 @@ public class BookIndexDao {
             Query query = new MultiFieldQueryParser(fields, analyzer).parse(keyword);
 
             // doSearch
-            searcher.search(query, collector);
+//            searcher.search(query, collector);
 
             // TopDocs
-            TopDocs topDocs = collector.topDocs(start, pageSize);
+//            TopDocs topDoc collector.topDocs(start, pageSize);
+            TopDocs topDocs = searcher.search(query,10);
 
             // scoreDocs
             ScoreDoc[] scoreDocs = topDocs.scoreDocs;
