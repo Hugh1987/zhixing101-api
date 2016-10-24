@@ -82,6 +82,7 @@ public class BookServiceImpl extends BasicService implements BookService {
         // book.setBookshelf(bs);
         // bookMapper.saveBook(book);
         //先判断是否在数据库中已经存在
+        System.out.println("判断是否存在");
         List<Book> bookList = null;
         if (isbn.length()>10){
             bookList = bookMapper.queryBooksByParams("isbn13",isbn);
