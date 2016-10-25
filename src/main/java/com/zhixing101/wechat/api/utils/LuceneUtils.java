@@ -77,6 +77,18 @@ public class LuceneUtils {
                     }
                 }
             });
+        } else {
+
+            try {
+                IndexReader newReader = DirectoryReader.openIfChanged((DirectoryReader) indexReader);
+                if (newReader != null) {
+                    indexReader.close();
+                    indexReader = newReader;
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         }
         return indexReader;
     }
