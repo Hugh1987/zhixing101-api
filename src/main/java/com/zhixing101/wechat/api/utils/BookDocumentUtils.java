@@ -28,6 +28,8 @@ public class BookDocumentUtils {
         doc.add(new TextField("title", book.getTitle(), Field.Store.YES));
         doc.add(new TextField("publisher", book.getPublisher(), Field.Store.YES));
         doc.add(new TextField("version", book.getVersion(), Field.Store.YES));
+        doc.add(new TextField("isbn10", book.getIsbn10(), Field.Store.YES));
+        doc.add(new TextField("isbn13", book.getIsbn13(), Field.Store.YES));
 
         return doc;
     }
