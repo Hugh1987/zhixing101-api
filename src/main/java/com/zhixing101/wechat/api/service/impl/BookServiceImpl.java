@@ -31,9 +31,19 @@ public class BookServiceImpl extends BasicService implements BookService {
     BookIndexDao bookIndexDao;
     
     public boolean saveBook(Book book) {
-        boolean flag = bookMapper.saveBook(book);
-        System.out.println("book's id = " + book.getId());
-        bookIndexDao.save(book);
+        boolean flag = false;
+        //先判断是否在数据库中已经存在
+        System.out.println("判断是否存在");
+        List<Book> bookList = bookMapper.queryBooksByParams("isbn13",book.getIsbn13());
+        if (bookList.size() < 1) {
+            try {
+                bookMapper.saveBook(book);
+                bookIndexDao.save(book);
+                flag = true;
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        }
         return flag;
     }
 
@@ -81,21 +91,11 @@ public class BookServiceImpl extends BasicService implements BookService {
         // bs.setBookStoragePlace(bookStoragePlace);
         // book.setBookshelf(bs);
         // bookMapper.saveBook(book);
-        //先判断是否在数据库中已经存在
-        System.out.println("判断是否存在");
-        List<Book> bookList = null;
-        if (isbn.length()>10){
-            bookList = bookMapper.queryBooksByParams("isbn13",isbn);
-        }else {
-            bookList = bookMapper.queryBooksByParams("isbn10",isbn);
-        }
-        if (bookList.size()>0) {
-            return bookList.get(0);
-        }
         return ISBNUtils.findBookByISBN(isbn);
     }
 
     public List<String> pagingQueryBooksByKeyword(String keyword, int pageSize, int pageIndex) {
+        logger.debug("开始进入搜索方法,查询参数为 " + keyword + "========================" + pageSize  + "/////" + pageIndex);
         return bookIndexDao.findBooksByKeyword(keyword, pageSize, pageIndex);
     }
 }
