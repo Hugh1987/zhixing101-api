@@ -92,7 +92,8 @@ public class BookIndexDao {
             TopScoreDocCollector collector = TopScoreDocCollector.create(count);
 
             // Reader
-            DirectoryReader reader = (DirectoryReader) LuceneUtils.getIndexReader();
+            DirectoryReader oldReader = (DirectoryReader) LuceneUtils.getIndexReader();
+            DirectoryReader reader = DirectoryReader.openIfChanged(oldReader);
 
             // IndexSearcher
             IndexSearcher searcher = new IndexSearcher(reader);
