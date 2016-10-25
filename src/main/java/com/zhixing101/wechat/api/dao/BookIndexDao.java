@@ -1,24 +1,34 @@
 package com.zhixing101.wechat.api.dao;
 
-import com.zhixing101.wechat.api.entity.Book;
-import com.zhixing101.wechat.api.utils.BookDocumentUtils;
-import com.zhixing101.wechat.api.utils.LuceneUtils;
-import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.analysis.cn.smart.SmartChineseAnalyzer;
-import org.apache.lucene.document.Document;
-import org.apache.lucene.index.DirectoryReader;
-import org.apache.lucene.queryparser.classic.MultiFieldQueryParser;
-import org.apache.lucene.queryparser.classic.ParseException;
-import org.apache.lucene.search.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.cn.smart.SmartChineseAnalyzer;
+import org.apache.lucene.document.Document;
+import org.apache.lucene.index.DirectoryReader;
+import org.apache.lucene.index.Term;
+import org.apache.lucene.queryparser.classic.MultiFieldQueryParser;
+import org.apache.lucene.queryparser.classic.ParseException;
+import org.apache.lucene.search.IndexSearcher;
+import org.apache.lucene.search.Query;
+import org.apache.lucene.search.ScoreDoc;
+import org.apache.lucene.search.TopDocs;
+import org.apache.lucene.search.TopScoreDocCollector;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.alibaba.dubbo.common.logger.Logger;
+import com.alibaba.dubbo.common.logger.LoggerFactory;
+import com.zhixing101.wechat.api.entity.Book;
+import com.zhixing101.wechat.api.utils.BookDocumentUtils;
+import com.zhixing101.wechat.api.utils.LuceneUtils;
+
 @Repository("bookIndexDao")
 public class BookIndexDao {
+
+    private static final Logger logger = LoggerFactory.getLogger(BookIndexDao.class);
 
     @Autowired
     static BookMapper bookMapper;
@@ -28,17 +38,19 @@ public class BookIndexDao {
      * 
      * @param book
      */
-    public void save(Book book) {
-//        // 1，把Book转为Document
+    public void save(Book book) throws Exception {
+
+        logger.debug("BookIndexDao.save begin");
+        logger.debug("Book to handle : " + book);
+
+        // 把Book转为Document
         Document doc = BookDocumentUtils.bookToDocument(book);
-//
-//        // 2，添加到索引库中
-        try {
-            LuceneUtils.getIndexWriter().addDocument(doc); // 添加
-            LuceneUtils.getIndexWriter().commit(); // 提交更改
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        // 添加到索引库中
+        LuceneUtils.getIndexWriter().addDocument(doc);
+        // 提交更改
+        LuceneUtils.getIndexWriter().commit();
+
+        logger.debug("BookIndexDao.save end");
     }
 
     /**
@@ -48,36 +60,45 @@ public class BookIndexDao {
      * 
      * @param id
      */
-    public void delete(Long id) {
-//        try {
-//            Term term = new Term("id", String.valueOf(id));
-//
-//            LuceneUtils.getIndexWriter().deleteDocuments(term); // 删除所有含有这个Term的Document
-//            LuceneUtils.getIndexWriter().commit(); // 提交更改
-//        } catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
+    public void delete(Long id) throws Exception {
+
+        logger.debug("BookIndexDao.delete begin");
+        logger.debug("BookId : " + id + "to delete.");
+
+        Term term = new Term("id", String.valueOf(id));
+        // 删除所有含有这个Term的Document
+        LuceneUtils.getIndexWriter().deleteDocuments(term);
+        // 提交更改
+        LuceneUtils.getIndexWriter().commit();
+
+        logger.debug("BookIndexDao.delete end");
     }
 
     /**
      * 更新索引
      * 
      * @param book
+     * @throws IOException
      */
-    public void update(Book book) {
-//        try {
-//            Term term = new Term("id", String.valueOf(book.getId()));
-//            Document doc = BookDocumentUtils.bookToDocument(book);
-//
-//            LuceneUtils.getIndexWriter().updateDocument(term, doc); // 更新就是先删除再添加
-//            LuceneUtils.getIndexWriter().commit(); // 提交更改
-//        } catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
+    public void update(Book book) throws Exception {
+
+        logger.debug("BookIndexDao.update begin");
+        logger.debug("Book to handle : " + book);
+
+        Term term = new Term("id", String.valueOf(book.getId()));
+        Document doc = BookDocumentUtils.bookToDocument(book);
+        // 更新就是先删除再添加
+        LuceneUtils.getIndexWriter().updateDocument(term, doc);
+        // 提交更改
+        LuceneUtils.getIndexWriter().commit();
+
+        logger.debug("BookIndexDao.update begin");
     }
 
     private List<String> getBookIdsByKeyword(String keyword, int pageSize, int pageIndex) {
-        System.out.println("begin search by lucene");
+
+        logger.debug("BookIndexDao.getBookIdsByKeyword begin");
+        logger.debug("keyword = " + keyword + ", pageSize = " + pageSize + ", pageIndex = " + pageIndex);
 
         List<String> result = new ArrayList<String>();
 
@@ -112,11 +133,10 @@ public class BookIndexDao {
 
             // TopDocs
             TopDocs topDocs = collector.topDocs(start, pageSize);
-//            TopDocs topDocs = searcher.search(query,10);
 
             // scoreDocs
             ScoreDoc[] scoreDocs = topDocs.scoreDocs;
-            System.out.println("length" + scoreDocs.length + "=======================");
+            logger.debug("scoreDocs.length = " + String.valueOf(scoreDocs.length));
 
             for (ScoreDoc scoreDoc : scoreDocs) {
 
@@ -126,6 +146,7 @@ public class BookIndexDao {
             }
 
             return result;
+
         } catch (IOException e) {
 
             e.printStackTrace();
@@ -133,7 +154,10 @@ public class BookIndexDao {
 
             e.printStackTrace();
         }
-        return null;
+
+        logger.debug("BookIndexDao.getBookIdsByKeyword end");
+
+        return result;
     }
 
     /**
@@ -145,11 +169,15 @@ public class BookIndexDao {
      */
     public List<String> findBooksByKeyword(String keyword, int pageSize, int pageIndex) {
 
+        logger.debug("BookIndexDao.findBooksByKeyword start");
+
         List<Book> books = new ArrayList<Book>();
         List<String> bookIds = getBookIdsByKeyword(keyword, pageSize, pageIndex);
-//        for (String bookId : bookIds) {
-//            books.add(bookMapper.findBookById(Long.valueOf(bookId)));
-//        }
+        // for (String bookId : bookIds) {
+        // books.add(bookMapper.findBookById(Long.valueOf(bookId)));
+        // }
+
+        logger.debug("BookIndexDao.findBooksByKeyword end");
         return bookIds;
     }
 }

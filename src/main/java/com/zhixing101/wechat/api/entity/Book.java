@@ -268,4 +268,11 @@ public class Book extends BaseEntity {
     public void setIsDeleted(Integer isDeleted) {
         this.isDeleted = isDeleted;
     }
+
+    @Override
+    public String toString() {
+        return "Book [id=" + id + ", title=" + title + ", version=" + version + ", author=" + author + ", publisher="
+                + publisher + ", isbn10=" + isbn10 + ", isbn13=" + isbn13 + "]";
+    }
+
 }

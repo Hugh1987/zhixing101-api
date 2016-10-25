@@ -19,9 +19,6 @@ import java.util.List;
 @Service("bookServiceImpl")
 public class BookServiceImpl extends BasicService implements BookService {
 
-    /**
-     * slf4j 日志类
-     **/
     private static final Logger logger = LoggerFactory.getLogger(BookServiceImpl.class);
 
     @Autowired
@@ -29,44 +26,91 @@ public class BookServiceImpl extends BasicService implements BookService {
 
     @Autowired
     BookIndexDao bookIndexDao;
-    
+
     public boolean saveBook(Book book) {
-        boolean flag = false;
-        //先判断是否在数据库中已经存在
-        System.out.println("判断是否存在");
-        List<Book> bookList = bookMapper.queryBooksByParams("isbn13",book.getIsbn13());
+
+        logger.debug("BookServiceImpl#saveBook begin");
+        logger.debug("Book to handle : " + book);
+
+        // 处理成功flag初始化为false
+        boolean successFlag = false;
+
+        // 根据book对象的isbn13字段搜索数据库
+        List<Book> bookList = bookMapper.queryBooksByParams("isbn13", book.getIsbn13());
+
+        // 数据库中不存在该isbn13对应的book对象
         if (bookList.size() < 1) {
+
+            logger.debug("This book does not exist in database.Start to add this book into database and lucene.");
+
             try {
+                // 保存book对象到数据库中
                 bookMapper.saveBook(book);
+                // 保存book对象到lucene索引中
                 bookIndexDao.save(book);
-                flag = true;
-            } catch (Exception e){
+                // 处理成功
+                successFlag = true;
+            } catch (Exception e) {
                 e.printStackTrace();
             }
+        } else {
+            logger.debug("This book exists in database.Do nothing with this book.");
         }
-        return flag;
+
+        logger.debug("BookServiceImpl#saveBook successFlag : " + successFlag);
+        logger.debug("BookServiceImpl#saveBook end");
+
+        return successFlag;
     }
 
     public boolean updateBook(Book book) {
-        bookIndexDao.update(book);
-        return bookMapper.updateBook(book);
+
+        logger.debug("BookServiceImpl#updateBook begin");
+        logger.debug("Book to handle : " + book);
+
+        // 处理成功flag初始化为false
+        boolean successFlag = false;
+
+        try {
+            // 更新数据库中的book对象
+            bookMapper.updateBook(book);
+            // 更新lucene索引中的book对象
+            bookIndexDao.update(book);
+            // 处理成功
+            successFlag = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        logger.debug("BookServiceImpl#updateBook successFlag : " + successFlag);
+        logger.debug("BookServiceImpl#updateBook end");
+
+        return successFlag;
     }
 
     public boolean deleteBook(Book book) {
-        bookIndexDao.delete(book.getId());
-        return bookMapper.deleteBook(book);
-//        try {
-//            Process process = null;
-//            process = Runtime.getRuntime().exec("cd /usr/local");
-//            process.waitFor();
-//            Runtime.getRuntime().exec("./killapi.sh zhixing101_wechat_api");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//
-//        return true;
+
+        logger.debug("BookServiceImpl#deleteBook begin");
+        logger.debug("Book to handle : " + book);
+
+        // 处理成功flag初始化为false
+        boolean successFlag = false;
+
+        try {
+            // 删除数据库中的book对象
+            bookMapper.deleteBook(book);
+            // 删除lucene索引中的book对象
+            bookIndexDao.delete(book.getId());
+            // 处理成功
+            successFlag = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        logger.debug("BookServiceImpl#deleteBook successFlag : " + successFlag);
+        logger.debug("BookServiceImpl#deleteBook end");
+
+        return successFlag;
     }
 
     public Book findBookById(Long id) {
@@ -82,20 +126,14 @@ public class BookServiceImpl extends BasicService implements BookService {
     }
 
     public Book findBookByISBN(String isbn) {
-        // Book book = new Book();
-        // book =ISBNUtils.findBookByISBN(isbn);
-        // BookStoragePlace bookStoragePlace = new BookStoragePlace();
-        // bookStoragePlace.setId(Long.parseLong(String.valueOf(1)));
-        // Bookshelf bs = new Bookshelf();
-        // bs.setId(Long.parseLong(String.valueOf(1)));
-        // bs.setBookStoragePlace(bookStoragePlace);
-        // book.setBookshelf(bs);
-        // bookMapper.saveBook(book);
         return ISBNUtils.findBookByISBN(isbn);
     }
 
     public List<String> pagingQueryBooksByKeyword(String keyword, int pageSize, int pageIndex) {
-        logger.debug("开始进入搜索方法,查询参数为 " + keyword + "========================" + pageSize  + "/////" + pageIndex);
+
+        logger.debug("BookServiceImpl#pagingQueryBooksByKeyword start");
+        logger.debug("keyword = " + keyword + ", pageSize = " + pageSize + ", pageIndex = " + pageIndex);
+
         return bookIndexDao.findBooksByKeyword(keyword, pageSize, pageIndex);
     }
 }
