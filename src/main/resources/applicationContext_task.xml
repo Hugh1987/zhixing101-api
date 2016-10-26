@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	">
+
+
+	<!-- 微信token的定时任务 -->
+	<bean id="luceneTask" class="com.zhixing101.wechat.api.job.LuceneIndexTask"></bean>
+	<bean id="luceneTarget" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="luceneTask" />
+		</property>
+		<property name="targetMethod">
+			<value>executeTask</value>
+		</property>
+	</bean>
+	<bean id="luceneTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="luceneTarget" /><!--执行详情task为上面那个配置的bean -->
+		</property>
+		<property name="startDelay"><!--开始延时时间 -->
+			<value>2000</value><!--从2s开始 -->
+		</property>
+		<property name="cronExpression">
+			<!-- 轮询时间间隔 -->
+			<value>0 0 23 * * ?</value><!--每7000s执行一次 -->
+		</property>
+	</bean>
+
+
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref local="luceneTaskTrigger" />
+			</list>
+		</property>
+	</bean>
+</beans>

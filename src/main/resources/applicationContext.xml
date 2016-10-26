@@ -65,10 +65,8 @@
     </bean>
 
 
-
-
     <!-- 定时扫描 任务完成情况 -->
-	<!--<import resource="applicationContext_task.xml" />-->
+	<import resource="applicationContext_task.xml" />
 
 	<!--<import resource="applicationContext_aop.xml" />-->
     <import resource="applicationProvider.xml"/>

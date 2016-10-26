@@ -7,7 +7,10 @@ import com.zhixing101.wechat.api.dao.BookMapper;
 import com.zhixing101.wechat.api.entity.Book;
 import com.zhixing101.wechat.api.service.BasicService;
 import com.zhixing101.wechat.api.service.BookService;
+import com.zhixing101.wechat.api.utils.BookDocumentUtils;
 import com.zhixing101.wechat.api.utils.ISBNUtils;
+import com.zhixing101.wechat.api.utils.LuceneIndexUtils;
+import org.apache.lucene.document.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +29,9 @@ public class BookServiceImpl extends BasicService implements BookService {
 
     @Autowired
     BookIndexDao bookIndexDao;
+
+    @Autowired
+    LuceneIndexUtils luceneIndexUtils;
 
     public boolean saveBook(Book book) {
 
@@ -47,7 +53,10 @@ public class BookServiceImpl extends BasicService implements BookService {
                 // 保存book对象到数据库中
                 bookMapper.saveBook(book);
                 // 保存book对象到lucene索引中
-                bookIndexDao.save(book);
+                // 把Book转为Document
+                Document doc = BookDocumentUtils.bookToDocument(book);
+                luceneIndexUtils.save(doc);
+//                bookIndexDao.save(book);
                 // 处理成功
                 successFlag = true;
             } catch (Exception e) {
