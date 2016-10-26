@@ -34,12 +34,14 @@ public class LuceneIndexTask {
      * 2.对比是否存在于索引中
      */
     public void executeTask() throws InterruptedException{
-
+        CheckLuceneIndex checkLuceneIndex = new CheckLuceneIndex();
+        checkLuceneIndex.run();
     }
 
-    class checkLuceneIndex implements Runnable{
+    class CheckLuceneIndex implements Runnable{
 
         public void run() {
+            logger.debug("begin lucene index task");
             List<Book> bookList = bookService.queryAllBooks();
             for (Book book : bookList){
                 List<String> result = luceneIndexUtils.findBooksByKeyword(String.valueOf(book.getId()),1,10);
