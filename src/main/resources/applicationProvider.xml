@@ -17,9 +17,12 @@
 
 	<!-- 暴露application接口 -->
     <!-- 平台服务的接口 -->
+    <!-- bookServiceImpl -->
 	<dubbo:service interface="com.zhixing101.wechat.api.service.BookService" ref="bookServiceImpl" retries="0" timeout="200000"/>
-
 	<bean id="bookServiceImpl" class="com.zhixing101.wechat.api.service.impl.BookServiceImpl" />
 
+    <!-- bookStoragePlaceServiceImpl -->
+    <dubbo:service interface="com.zhixing101.wechat.api.service.BookStoragePlaceService" ref="bookStoragePlaceServiceImpl" retries="0" timeout="200000"/>
+    <bean id="bookStoragePlaceServiceImpl" class="com.zhixing101.wechat.api.service.impl.BookStoragePlaceServiceImpl" />
 
 </beans>

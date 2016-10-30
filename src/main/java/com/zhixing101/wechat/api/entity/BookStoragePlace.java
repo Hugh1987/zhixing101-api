@@ -197,4 +197,10 @@ public class BookStoragePlace extends BaseEntity {
         this.isDeteled = isDeteled;
     }
 
+    @Override
+    public String toString() {
+        return "BookStoragePlace [poiId=" + poiId + ", name=" + name + ", description=" + description + ", longtitude="
+                + longtitude + ", latitude=" + latitude + "]";
+    }
+
 }
