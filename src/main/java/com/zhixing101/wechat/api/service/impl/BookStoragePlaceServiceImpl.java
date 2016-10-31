@@ -26,14 +26,20 @@ public class BookStoragePlaceServiceImpl extends BasicService implements BookSto
         // 处理成功flag初始化为false
         boolean successFlag = false;
 
-        // 保存bookStoragePlace对象到百度LBS云
-        // TODO
-        // 保存bookStoragePlace对象到数据库
-        // TODO
+        try {
+            // 保存bookStoragePlace对象到百度LBS云
+            // TODO
+            // 保存bookStoragePlace对象到数据库
+            bookStoragePlaceMapper.saveBookStoragePlace(bookStoragePlace);
+            // 处理成功
+            successFlag = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         logger.debug("BookStoragePlaceServiceImpl#saveBookStoragePlace successFlag : " + successFlag);
         logger.debug("BookStoragePlaceServiceImpl#saveBookStoragePlace end");
-        return false;
+        return successFlag;
     }
 
 }
