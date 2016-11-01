@@ -29,12 +29,12 @@
 		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
 		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
 		<result column="is_deleted" property="isDeleted" jdbcType="TINYINT" />
-		<association column="bookshelf_id" property="bookShelf" select="queryBookShelf" />
+		<association column="bookshelf_id" property="bookshelf" select="queryBookshelf" />
 		<association column="create_user" property="creator" select="queryUser" />
 		<association column="update_user" property="updateUser" select="queryUser" />
 	</resultMap>
 
-	<resultMap id="bookShelfResultMap" type="bookShelf">
+	<resultMap id="bookshelfResultMap" type="bookshelf">
 		<id column="id" property="id" jdbcType="BIGINT" />
 		<result column="name" property="name" jdbcType="VARCHAR" />
 		<result column="floor" property="floor" jdbcType="VARCHAR" />
@@ -144,7 +144,7 @@
 		SELECT * FROM mst_book_storage_place WHERE id = #{id} AND is_deleted = 0
 	</select>
 
-	<select id="queryBookShelf" resultMap="bookShelfResultMap">
+	<select id="queryBookshelf" resultMap="bookshelfResultMap">
 		SELECT * FROM mst_bookshelf WHERE id = #{id} AND is_deleted = 0
 	</select>
 

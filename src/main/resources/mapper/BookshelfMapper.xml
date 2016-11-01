@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zhixing101.wechat.api.dao.BookShelfMapper">
+<mapper namespace="com.zhixing101.wechat.api.dao.BookshelfMapper">
 
     <resultMap id="bookResultMap" type="book">
         <id column="id" property="id" jdbcType="INTEGER"/>
@@ -27,13 +27,13 @@
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
         <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
         <result column="isDelete" property="isDelete" jdbcType="TINYINT"/>
-        <association column="bookshelf_id" property="bookShelf" select="queryBookShelf"/>
+        <association column="bookshelf_id" property="bookshelf" select="queryBookshelf"/>
         <association column="create_user" property="creator" select="queryUser"/>
         <association column="update_user" property="updateUser" select="queryUser"/>
     </resultMap>
 
 
-    <resultMap id="bookShelfResultMap" type="bookShelf">
+    <resultMap id="bookshelfResultMap" type="bookshelf">
         <id column="id" property="id" jdbcType="INTEGER"/>
         <result column="name" property="name" jdbcType="VARCHAR"/>
         <result column="floor" property="floor" jdbcType="VARCHAR"/>
@@ -91,7 +91,7 @@
         SELECT * FROM mst_book_storage_place where id = #{id}
     </select>
 
-    <select id="queryBookShelf" resultMap="bookShelfResultMap">
+    <select id="queryBookshelf" resultMap="bookshelfResultMap">
         SELECT * FROM mst_bookshelf where id = #{id}
     </select>
 
