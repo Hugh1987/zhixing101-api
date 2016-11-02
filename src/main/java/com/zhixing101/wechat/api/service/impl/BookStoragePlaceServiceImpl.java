@@ -35,6 +35,7 @@ public class BookStoragePlaceServiceImpl extends BasicService implements BookSto
             successFlag = true;
         } catch (Exception e) {
             e.printStackTrace();
+            logger.debug(e.getMessage());
         }
 
         logger.debug("BookStoragePlaceServiceImpl#saveBookStoragePlace successFlag : " + successFlag);
