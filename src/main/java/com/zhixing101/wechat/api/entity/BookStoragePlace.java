@@ -27,7 +27,7 @@ public class BookStoragePlace extends BaseEntity {
     private Timestamp createTime; // 创建时间
     private User updateUser; // 更新者
     private Timestamp updateTime; // 更新时间
-    private Integer isDeteled; // 删除标志
+    private Integer isDeleted; // 删除标志
 
     public Long getId() {
         return id;
@@ -189,12 +189,12 @@ public class BookStoragePlace extends BaseEntity {
         this.updateTime = updateTime;
     }
 
-    public Integer getIsDeteled() {
-        return isDeteled;
+    public Integer getIsDeleted() {
+        return isDeleted;
     }
 
-    public void setIsDeteled(Integer isDeteled) {
-        this.isDeteled = isDeteled;
+    public void setIsDeleted(Integer isDeleted) {
+        this.isDeleted = isDeleted;
     }
 
     @Override
