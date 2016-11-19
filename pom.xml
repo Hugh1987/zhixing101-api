@@ -1,16 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.zhixing101.wechat</groupId>
     <artifactId>api</artifactId>
     <version>1.1.3-SNAPSHOT</version>
     <packaging>jar</packaging>
-
     <description>zhixing101-api</description>
 
+    <!-- 使用阿里云maven仓库 -->
+    <repositories>
+        <repository>
+            <id>alimaven</id>
+            <name>aliyun maven</name>
+            <layout>default</layout>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -38,7 +48,6 @@
         <!-- fastjson -->
         <fastjson.version>1.2.16</fastjson.version>
         <quartz.version>2.2.3</quartz.version>
-
         <!-- Apache Commons Jar -->
         <commons.logging.version>1.1.3</commons.logging.version>
         <commons.collections.version>3.1</commons.collections.version>
@@ -49,63 +58,55 @@
         <commons.lang.version>2.6</commons.lang.version>
         <commons.io.version>2.4</commons.io.version>
         <commons.validator.version>1.4.1</commons.validator.version>
-
         <!-- junit -->
         <junit.version>4.12</junit.version>
-
         <!-- lucene -->
         <lucene.version>6.2.0</lucene.version>
-
     </properties>
 
     <dependencies>
-
         <!-- httpclient -->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
             <version>${httpclient.version}</version>
         </dependency>
-    
+        <!-- jta -->
         <dependency>
             <groupId>javax.transaction</groupId>
             <artifactId>jta</artifactId>
             <version>1.1</version>
         </dependency>
-
+        <!-- aopalliance -->
         <dependency>
             <groupId>aopalliance</groupId>
             <artifactId>aopalliance</artifactId>
             <version>1.0</version>
         </dependency>
-
         <!-- mysql-connector-java -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql.connector.version}</version>
         </dependency>
-
         <!-- mybatis -->
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
             <version>${mybatis.version}</version>
         </dependency>
-
         <!-- mybatis-spring -->
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis-spring</artifactId>
             <version>${mybatis.spring.version}</version>
         </dependency>
-
+        <!-- aspectjweaver -->
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
             <version>1.7.2</version>
         </dependency>
-
         <!-- spring-core -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -183,27 +184,24 @@
             <artifactId>spring-test</artifactId>
             <version>${spring.version}</version>
         </dependency>
-
+        <!-- servlet -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
             <version>2.5</version>
         </dependency>
-
         <dependency>
             <groupId>javax.servlet.jsp</groupId>
             <artifactId>jsp-api</artifactId>
             <version>2.1</version>
             <scope>provided</scope>
         </dependency>
-
         <!-- druid -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
             <version>${druid.version}</version>
         </dependency>
-
         <!-- jstl -->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -246,18 +244,16 @@
             <artifactId>cglib</artifactId>
             <version>3.0</version>
         </dependency>
-
-        <!--<dependency>-->
-        <!--<groupId>proxool</groupId>-->
-        <!--<artifactId>proxool</artifactId>-->
-        <!--<version>${proxool.version}</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-        <!--<groupId>proxool</groupId>-->
-        <!--<artifactId>proxool-cglib</artifactId>-->
-        <!--<version>0.9.1</version>-->
-        <!--</dependency>-->
-
+        <!--<dependency> -->
+        <!--<groupId>proxool</groupId> -->
+        <!--<artifactId>proxool</artifactId> -->
+        <!--<version>${proxool.version}</version> -->
+        <!--</dependency> -->
+        <!--<dependency> -->
+        <!--<groupId>proxool</groupId> -->
+        <!--<artifactId>proxool-cglib</artifactId> -->
+        <!--<version>0.9.1</version> -->
+        <!--</dependency> -->
         <!-- junit -->
         <dependency>
             <groupId>junit</groupId>
@@ -265,7 +261,6 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-
         <!-- dubbo jar -->
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -273,19 +268,14 @@
             <version>2.5.3</version>
             <!-- 去除重复jar包 -->
             <exclusions>
-                <!--
-                    <exclusion>
-                        <groupId>org.jboss.netty</groupId>
-                        <artifactId>netty</artifactId>
-                    </exclusion>
-                     -->
+                <!-- <exclusion> <groupId>org.jboss.netty</groupId> <artifactId>netty</artifactId> 
+                    </exclusion> -->
                 <exclusion>
                     <groupId>org.springframework</groupId>
                     <artifactId>spring</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
-
         <!-- commoms start -->
         <dependency>
             <groupId>commons-lang</groupId>
@@ -328,7 +318,6 @@
             <version>${commons.pool.version}</version>
         </dependency>
         <!-- commoms end -->
-
         <!-- lucene start -->
         <dependency>
             <groupId>org.apache.lucene</groupId>
@@ -351,14 +340,12 @@
             <version>6.2.0</version>
         </dependency>
         <!-- lucene end -->
-
-        <!--任务调度  -->
+        <!--任务调度 -->
         <dependency>
             <groupId>org.quartz-scheduler</groupId>
             <artifactId>quartz</artifactId>
             <version>${quartz.version}</version>
         </dependency>
-
     </dependencies>
 
     <!-- 定义Maven不同的构建模式 -->
@@ -507,19 +494,16 @@
 
     </profiles>
 
-
-
     <!-- 设置发布到远程仓库 -->
     <distributionManagement>
+        <!-- <repository> <id>nexus-releases</id> <name>Releases</name> <url>http://www.ntjoytech.com:8081/nexus/content/repositories/releases/</url> 
+            </repository> <snapshotRepository> <id>nexus-snapshots</id> <name>Snapshots</name> 
+            <url>http://www.ntjoytech.com:8081/nexus/content/repositories/snapshots/</url> </snapshotRepository> -->
         <repository>
-            <id>nexus-releases</id>
-            <name>Releases</name>
-            <url>http://www.ntjoytech.com:8081/nexus/content/repositories/releases/</url>
-        </repository>
-        <snapshotRepository>
-            <id>nexus-snapshots</id>
+            <id>nexus-snapshots
+                </id>
             <name>Snapshots</name>
-            <url>http://www.ntjoytech.com:8081/nexus/content/repositories/snapshots/</url>
-        </snapshotRepository>
+            <url>http://nexus.zzhkll.com/nexus/content/repositories/snapshots/</url>
+        </repository>
     </distributionManagement>
 </project>
