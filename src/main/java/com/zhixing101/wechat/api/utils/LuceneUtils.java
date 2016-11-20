@@ -20,7 +20,7 @@ public class LuceneUtils {
     private static final Logger logger = LoggerFactory.getLogger(LuceneUtils.class);
 
     // lucene索引存储路径
-    private static String indexPath = "/usr/local/luceneIndex";
+    private static String indexPath = "/var/runspace/zhixing101_api/luceneIndex";
     // 索引目录
     private static Directory directory;
     // 分词器
