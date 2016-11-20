@@ -24,6 +24,7 @@
             <list>
                 <value>classpath:props/api.properties</value>
                 <value>classpath:props/dataSource.properties</value>
+                <value>classpath:props/baidu.properties</value>
             </list>
         </property>
     </bean>

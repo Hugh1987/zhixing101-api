@@ -104,4 +104,9 @@ public class BaiduLbsConstants {
      * 坐标类型--4：百度加密墨卡托坐标
      */
     public static final int COORD_TYPE_BDMCT = 4;
+
+    /**
+     * 创建数据（create poi）接口
+     */
+    public static final String CREATE_POI_URL = "http://api.map.baidu.com/geodata/v3/poi/create";
 }
