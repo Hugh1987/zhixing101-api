@@ -29,15 +29,15 @@ public class BookStoragePlaceServiceImpl extends BasicService implements BookSto
         boolean successFlag = false;
 
         try {
-            // 保存bookStoragePlace对象到百度LBS云
-            String poiId = BaiduLbsCloudUtils.createBookStoragePlace(bookStoragePlace);
-            
-            logger.debug("BaiduLbsCloudUtils#createBookStoragePlace poiId = " + poiId);
-            
-            if (StringUtils.isEmpty(poiId)) {
-                return successFlag;
-            }
-            bookStoragePlace.setPoiId(poiId);
+//            // 保存bookStoragePlace对象到百度LBS云
+//            String poiId = BaiduLbsCloudUtils.createBookStoragePlace(bookStoragePlace);
+//            
+//            logger.debug("BaiduLbsCloudUtils#createBookStoragePlace poiId = " + poiId);
+//            
+//            if (StringUtils.isEmpty(poiId)) {
+//                return successFlag;
+//            }
+//            bookStoragePlace.setPoiId(poiId);
             // 保存bookStoragePlace对象到数据库
             bookStoragePlaceMapper.saveBookStoragePlace(bookStoragePlace);
             // 处理成功
