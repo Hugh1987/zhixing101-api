@@ -245,12 +245,12 @@ public class CreatePoiReq {
         this.geotable_id = geotable_id;
         this.ak = ak;
         this.description = bookStoragePlace.getDescription();
-        this.delete_flag = bookStoragePlace.getIsDeleted();
-        this.traffic = bookStoragePlace.getTraffic();
-        this.open_time = bookStoragePlace.getOpenTime();
-        this.owner_user_id = String.valueOf(bookStoragePlace.getOwnerUser().getId());
-        this.mobile_phone = bookStoragePlace.getMobilePhone();
-        this.phone = bookStoragePlace.getPhone();
+//        this.delete_flag = bookStoragePlace.getIsDeleted();
+//        this.traffic = bookStoragePlace.getTraffic();
+//        this.open_time = bookStoragePlace.getOpenTime();
+//        this.owner_user_id = String.valueOf(bookStoragePlace.getOwnerUser().getId());
+//        this.mobile_phone = bookStoragePlace.getMobilePhone();
+//        this.phone = bookStoragePlace.getPhone();
         this.name = bookStoragePlace.getName();
     }
 
