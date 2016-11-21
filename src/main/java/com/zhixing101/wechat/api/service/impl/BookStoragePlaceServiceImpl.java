@@ -31,6 +31,9 @@ public class BookStoragePlaceServiceImpl extends BasicService implements BookSto
         try {
             // 保存bookStoragePlace对象到百度LBS云
             String poiId = BaiduLbsCloudUtils.createBookStoragePlace(bookStoragePlace);
+            
+            logger.debug("BaiduLbsCloudUtils#createBookStoragePlace poiId = " + poiId);
+            
             if (StringUtils.isEmpty(poiId)) {
                 return successFlag;
             }

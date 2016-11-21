@@ -18,6 +18,8 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Value;
 
+import com.alibaba.dubbo.common.logger.Logger;
+import com.alibaba.dubbo.common.logger.LoggerFactory;
 import com.alibaba.fastjson.JSON;
 import com.baidu.lbsyun.common.BaiduLbsConstants;
 import com.baidu.lbsyun.request.CreatePoiReq;
@@ -30,6 +32,8 @@ import com.zhixing101.wechat.api.entity.BookStoragePlace;
  */
 @SuppressWarnings("deprecation")
 public class BaiduLbsCloudUtils {
+
+    private static final Logger logger = LoggerFactory.getLogger(BaiduLbsCloudUtils.class);
 
     @Value("#{propertyConfigurer['baidu.ak']}")
     private static String ak;
@@ -51,6 +55,10 @@ public class BaiduLbsCloudUtils {
 
     public static String createBookStoragePlace(BookStoragePlace bookStoragePlace) {
 
+        logger.debug("BaiduLbsCloudUtils#createBookStoragePlace begin");
+        logger.debug("BaiduLbsCloudUtils#createBookStoragePlace bookStoragePlaceGeotableId = " + bookStoragePlaceGeotableId);
+        logger.debug("BaiduLbsCloudUtils#createBookStoragePlace ak = " + ak);
+
         CreatePoiReq createPoiReq = new CreatePoiReq(null, BaiduLbsConstants.COORD_TYPE_BD09,
                 bookStoragePlaceGeotableId, ak, bookStoragePlace);
 
@@ -58,9 +66,11 @@ public class BaiduLbsCloudUtils {
 
         if (StringUtils.isEmpty(poiId)) {
             // 失败
+            logger.debug("BaiduLbsCloudUtils#createBookStoragePlace end : poiId is null");
             return null;
         } else {
             // 成功
+            logger.debug("BaiduLbsCloudUtils#createBookStoragePlace end : poiId = " + poiId);
             return poiId;
         }
     }
