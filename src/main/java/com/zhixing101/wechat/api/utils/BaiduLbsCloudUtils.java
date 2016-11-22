@@ -35,11 +35,11 @@ public class BaiduLbsCloudUtils {
 
     private static final Logger logger = LoggerFactory.getLogger(BaiduLbsCloudUtils.class);
 
-    @Value("#{configProperties['baidu.ak']}")
-    private static String ak;
+    //@Value("#{configProperties['baidu.ak']}")
+    private static String ak = "N32lyWhU7RfjrFD76cYt6jmCHGWbicbd";
 
-    @Value("#{configProperties['baidu.bookStoragePlaceGeotableId']}")
-    private static String bookStoragePlaceGeotableId;
+    //@Value("#{configProperties['baidu.bookStoragePlaceGeotableId']}")
+    private static String bookStoragePlaceGeotableId = "151644";
 
     // public static void main(String[] args) {
     //
