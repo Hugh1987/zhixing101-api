@@ -28,7 +28,16 @@
             </list>
         </property>
     </bean>
-    
+
+    <!-- 加载properties文件 -->
+    <bean id="configProperties"
+        class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="locations">
+            <list>
+                <value>classpath:props/baidu.properties</value>
+            </list>
+        </property>
+    </bean>
 
     <!-- 全工程开启Spring 注解扫描  -->
     <context:component-scan base-package="com.zhixing101.wechat.api.*">
