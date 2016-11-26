@@ -1,10 +1,17 @@
 package com.zhixing101.wechat.api.entity.req;
 
+import java.io.Serializable;
+
 /**
  * 创建存书点请求
  *
  */
-public class CreateBookStoragePlaceRequest {
+public class CreateBookStoragePlaceRequest implements Serializable{
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 6930983721728992226L;
 
     /**
      * 位置数据POI ID
