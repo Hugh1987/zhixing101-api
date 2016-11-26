@@ -1,6 +1,7 @@
 package com.baidu.lbsyun.request;
 
 import com.zhixing101.wechat.api.entity.BookStoragePlace;
+import com.zhixing101.wechat.api.entity.req.CreateBookStoragePlaceRequest;
 
 /**
  * 创建数据(POI)请求
@@ -235,23 +236,16 @@ public class CreatePoiReq {
                 + ", description=" + description + ", name=" + name + "]";
     }
 
-    public CreatePoiReq(String tags, int coord_type, String geotable_id, String ak, BookStoragePlace bookStoragePlace) {
-        this.title = bookStoragePlace.getName();
-        this.address = bookStoragePlace.getAddress();
+    public CreatePoiReq(String tags, int coord_type, String geotable_id, String ak, CreateBookStoragePlaceRequest req) {
+        this.title = req.getName();
         this.tags = tags;
-        this.latitude = Double.parseDouble(bookStoragePlace.getLatitude());
-        this.longitude = Double.parseDouble(bookStoragePlace.getLongtitude());
+        this.latitude = Double.parseDouble(req.getLatitude());
+        this.longitude = Double.parseDouble(req.getLongtitude());
         this.coord_type = coord_type;
         this.geotable_id = geotable_id;
         this.ak = ak;
-        this.description = bookStoragePlace.getDescription();
-//        this.delete_flag = bookStoragePlace.getIsDeleted();
-//        this.traffic = bookStoragePlace.getTraffic();
-//        this.open_time = bookStoragePlace.getOpenTime();
-//        this.owner_user_id = String.valueOf(bookStoragePlace.getOwnerUser().getId());
-//        this.mobile_phone = bookStoragePlace.getMobilePhone();
-//        this.phone = bookStoragePlace.getPhone();
-        this.name = bookStoragePlace.getName();
+        this.description = req.getDescription();
+        this.name = req.getName();
     }
 
 }

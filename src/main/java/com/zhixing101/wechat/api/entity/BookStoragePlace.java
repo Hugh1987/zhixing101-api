@@ -2,6 +2,8 @@ package com.zhixing101.wechat.api.entity;
 
 import java.sql.Timestamp;
 
+import com.zhixing101.wechat.api.entity.req.CreateBookStoragePlaceRequest;
+
 /**
  * Created by adam on 10/9/16.
  */
@@ -201,6 +203,14 @@ public class BookStoragePlace extends BaseEntity {
     public String toString() {
         return "BookStoragePlace [poiId=" + poiId + ", name=" + name + ", description=" + description + ", longtitude="
                 + longtitude + ", latitude=" + latitude + "]";
+    }
+
+    public BookStoragePlace(CreateBookStoragePlaceRequest req) {
+        this.name = req.getName();
+        this.description = req.getDescription();
+        this.longtitude = req.getLongtitude();
+        this.latitude = req.getLatitude();
+        this.ownerUser.setWechatOpenId(req.getWechatOpenId());
     }
 
 }

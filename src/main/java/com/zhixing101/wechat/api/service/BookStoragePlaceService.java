@@ -1,8 +1,9 @@
 package com.zhixing101.wechat.api.service;
 
-import com.zhixing101.wechat.api.entity.BookStoragePlace;
+import com.zhixing101.wechat.api.entity.req.CreateBookStoragePlaceRequest;
+import com.zhixing101.wechat.api.entity.res.CreateBookStoragePlaceResponse;
 
 public interface BookStoragePlaceService {
 
-    boolean saveBookStoragePlace(BookStoragePlace bookStoragePlace);
+    CreateBookStoragePlaceResponse saveBookStoragePlace(CreateBookStoragePlaceRequest req);
 }

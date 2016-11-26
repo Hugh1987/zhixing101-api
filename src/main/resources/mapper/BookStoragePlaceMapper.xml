@@ -46,17 +46,18 @@
     street,
     address, phone,
     mobile_phone,
-    owner_user_id, open_time, traffic, create_user,
+    owner_user_id, owner_wechat_open_id, open_time, traffic, create_user,
     create_time,
     update_user,
     update_time, is_deleted)
     VALUES
     (#{bookStoragePlace.poiId},
-    #{bookStoragePlace.name}, #{bookStoragePlace.description},
+    #{bookStoragePlace.name},
+    #{bookStoragePlace.description},
     #{bookStoragePlace.longtitude},
     #{bookStoragePlace.latitude},#{bookStoragePlace.province},
     #{bookStoragePlace.city},#{bookStoragePlace.district},#{bookStoragePlace.street},#{bookStoragePlace.address},
-    #{bookStoragePlace.phone},#{bookStoragePlace.mobilePhone},#{bookStoragePlace.ownerUser.id},#{bookStoragePlace.openTime},#{bookStoragePlace.traffic},
+    #{bookStoragePlace.phone},#{bookStoragePlace.mobilePhone},#{bookStoragePlace.ownerUser.id},#{bookStoragePlace.ownerUser.wechatOpenId},#{bookStoragePlace.openTime},#{bookStoragePlace.traffic},
     #{bookStoragePlace.creator.id},#{bookStoragePlace.createTime},#{bookStoragePlace.updateUser.id},#{bookStoragePlace.updateTime},#{bookStoragePlace.isDeleted})
     </insert>
 

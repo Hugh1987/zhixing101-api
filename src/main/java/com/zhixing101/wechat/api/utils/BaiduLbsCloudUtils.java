@@ -17,6 +17,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import com.alibaba.dubbo.common.logger.Logger;
 import com.alibaba.dubbo.common.logger.LoggerFactory;
@@ -25,52 +26,47 @@ import com.baidu.lbsyun.common.BaiduLbsConstants;
 import com.baidu.lbsyun.request.CreatePoiReq;
 import com.baidu.lbsyun.response.CreatePoiRes;
 import com.zhixing101.wechat.api.common.Constant;
-import com.zhixing101.wechat.api.entity.BookStoragePlace;
+import com.zhixing101.wechat.api.entity.req.CreateBookStoragePlaceRequest;
 
 /**
  * 百度LBS云 工具类
  */
 @SuppressWarnings("deprecation")
+@Component
 public class BaiduLbsCloudUtils {
 
     private static final Logger logger = LoggerFactory.getLogger(BaiduLbsCloudUtils.class);
 
-    //@Value("#{configProperties['baidu.ak']}")
-    private static String ak = "N32lyWhU7RfjrFD76cYt6jmCHGWbicbd";
+    private static String ak;
 
-    //@Value("#{configProperties['baidu.bookStoragePlaceGeotableId']}")
-    private static String bookStoragePlaceGeotableId = "151644";
+    private static String bookStoragePlaceGeotableId;
 
-    // public static void main(String[] args) {
-    //
-    // BookStoragePlace bookStoragePlace = new BookStoragePlace();
-    // bookStoragePlace.setName("图书馆A");
-    // bookStoragePlace.setDescription("介绍");
-    // bookStoragePlace.setAddress("南京");
-    // bookStoragePlace.setLatitude("31.915055485888");
-    // bookStoragePlace.setLongtitude("118.90784528855");
-    //
-    // BaiduLbsCloudUtils.createBookStoragePlace(bookStoragePlace);
-    // }
+    @Value("#{configProperties['baidu.ak']}")
+    public static void setAk(String ak) {
+        BaiduLbsCloudUtils.ak = ak;
+    }
 
-    public static String createBookStoragePlace(BookStoragePlace bookStoragePlace) {
+    @Value("#{configProperties['baidu.bookStoragePlaceGeotableId']}")
+    public static void setBookStoragePlaceGeotableId(String bookStoragePlaceGeotableId) {
+        BaiduLbsCloudUtils.bookStoragePlaceGeotableId = bookStoragePlaceGeotableId;
+    }
 
-        logger.debug("BaiduLbsCloudUtils#createBookStoragePlace begin");
-        logger.debug("BaiduLbsCloudUtils#createBookStoragePlace bookStoragePlaceGeotableId = " + bookStoragePlaceGeotableId);
-        logger.debug("BaiduLbsCloudUtils#createBookStoragePlace ak = " + ak);
+    public static String createBookStoragePlace(CreateBookStoragePlaceRequest req) {
+
+        logger.debug("createBookStoragePlace begin");
 
         CreatePoiReq createPoiReq = new CreatePoiReq(null, BaiduLbsConstants.COORD_TYPE_BD09,
-                bookStoragePlaceGeotableId, ak, bookStoragePlace);
+                bookStoragePlaceGeotableId, ak, req);
 
         String poiId = createPoi(createPoiReq);
 
         if (StringUtils.isEmpty(poiId)) {
             // 失败
-            logger.debug("BaiduLbsCloudUtils#createBookStoragePlace end : poiId is null");
+            logger.debug("createBookStoragePlace end : poiId is null");
             return null;
         } else {
             // 成功
-            logger.debug("BaiduLbsCloudUtils#createBookStoragePlace end : poiId = " + poiId);
+            logger.debug("createBookStoragePlace end : poiId = " + poiId);
             return poiId;
         }
     }

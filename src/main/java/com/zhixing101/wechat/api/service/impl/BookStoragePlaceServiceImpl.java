@@ -8,6 +8,8 @@ import com.alibaba.dubbo.common.logger.LoggerFactory;
 import com.alibaba.dubbo.common.utils.StringUtils;
 import com.zhixing101.wechat.api.dao.BookStoragePlaceMapper;
 import com.zhixing101.wechat.api.entity.BookStoragePlace;
+import com.zhixing101.wechat.api.entity.req.CreateBookStoragePlaceRequest;
+import com.zhixing101.wechat.api.entity.res.CreateBookStoragePlaceResponse;
 import com.zhixing101.wechat.api.service.BasicService;
 import com.zhixing101.wechat.api.service.BookStoragePlaceService;
 import com.zhixing101.wechat.api.utils.BaiduLbsCloudUtils;
@@ -20,36 +22,44 @@ public class BookStoragePlaceServiceImpl extends BasicService implements BookSto
     @Autowired
     BookStoragePlaceMapper bookStoragePlaceMapper;
 
-    public boolean saveBookStoragePlace(BookStoragePlace bookStoragePlace) {
+    public CreateBookStoragePlaceResponse saveBookStoragePlace(CreateBookStoragePlaceRequest req) {
 
-        logger.debug("BookStoragePlaceServiceImpl#saveBookStoragePlace begin");
-        logger.debug("BookStoragePlace to handle : " + bookStoragePlace);
+        logger.debug("saveBookStoragePlace begin");
+        logger.debug("req = " + req);
 
-        // 处理成功flag初始化为false
-        boolean successFlag = false;
+        // 初始化返回结果
+        CreateBookStoragePlaceResponse res = new CreateBookStoragePlaceResponse();
+        res.setId(null);
+        res.setStatus(1);
+        res.setMessage("failed");
 
         try {
-            // 保存bookStoragePlace对象到百度LBS云
-            String poiId = BaiduLbsCloudUtils.createBookStoragePlace(bookStoragePlace);
+            // 保存到百度LBS云
+            String poiId = BaiduLbsCloudUtils.createBookStoragePlace(req);
 
-            logger.debug("BaiduLbsCloudUtils#createBookStoragePlace poiId = " + poiId);
+            logger.debug("poiId = " + poiId);
 
+            // 判断百度LBS云保存结果
             if (StringUtils.isEmpty(poiId)) {
-                return successFlag;
+                logger.debug("saveBookStoragePlace end");
+                return res;
             }
+            BookStoragePlace bookStoragePlace = new BookStoragePlace(req);
             bookStoragePlace.setPoiId(poiId);
-            // 保存bookStoragePlace对象到数据库
-            bookStoragePlaceMapper.saveBookStoragePlace(bookStoragePlace);
-            // 处理成功
-            successFlag = true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            logger.debug(e.getMessage());
-        }
 
-        logger.debug("BookStoragePlaceServiceImpl#saveBookStoragePlace successFlag : " + successFlag);
-        logger.debug("BookStoragePlaceServiceImpl#saveBookStoragePlace end");
-        return successFlag;
+            // 保存到数据库
+            bookStoragePlaceMapper.saveBookStoragePlace(bookStoragePlace);
+            // 更新返回结果
+            res.setId(bookStoragePlace.getId());
+            res.setStatus(0);
+            res.setMessage("succeed");
+
+            logger.debug("saveBookStoragePlace res = " + res);
+            logger.debug("saveBookStoragePlace end");
+            return res;
+        } catch (Exception e) {
+            return res;
+        }
     }
 
 }
