@@ -37,19 +37,19 @@ public class BaiduLbsCloudUtils {
 
     private static final Logger logger = LoggerFactory.getLogger(BaiduLbsCloudUtils.class);
 
-    private static String ak;
+    private static String ak = "N32lyWhU7RfjrFD76cYt6jmCHGWbicbd";
 
-    private static String bookStoragePlaceGeotableId;
+    private static String bookStoragePlaceGeotableId = "151644";
 
-    @Value("#{apiConfigProperties['baidu.ak']}")
-    public static void setAk(String propAk) {
-        ak = propAk;
-    }
-
-    @Value("#{apiConfigProperties['baidu.bookStoragePlaceGeotableId']}")
-    public static void setBookStoragePlaceGeotableId(String propBookStoragePlaceGeotableIdVal) {
-        bookStoragePlaceGeotableId = propBookStoragePlaceGeotableIdVal;
-    }
+//    @Value("#{apiConfigProperties['baidu.ak']}")
+//    public static void setAk(String propAk) {
+//        ak = propAk;
+//    }
+//
+//    @Value("#{apiConfigProperties['baidu.bookStoragePlaceGeotableId']}")
+//    public static void setBookStoragePlaceGeotableId(String propBookStoragePlaceGeotableIdVal) {
+//        bookStoragePlaceGeotableId = propBookStoragePlaceGeotableIdVal;
+//    }
 
     public static String createBookStoragePlace(CreateBookStoragePlaceRequest req) {
 
