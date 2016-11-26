@@ -1,10 +1,17 @@
 package com.zhixing101.wechat.api.entity.res;
 
+import java.io.Serializable;
+
 /**
  * 创建存书点响应
  *
  */
-public class CreateBookStoragePlaceResponse {
+public class CreateBookStoragePlaceResponse implements Serializable{
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -3724012974804766963L;
 
     /**
      * 返回码
