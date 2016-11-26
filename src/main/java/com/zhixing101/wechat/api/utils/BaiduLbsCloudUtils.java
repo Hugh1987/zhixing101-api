@@ -41,19 +41,21 @@ public class BaiduLbsCloudUtils {
 
     private static String bookStoragePlaceGeotableId;
 
-    @Value("#{configProperties['baidu.ak']}")
-    public static void setAk(String ak) {
-        BaiduLbsCloudUtils.ak = ak;
+    @Value("#{apiConfigProperties['baidu.ak']}")
+    public static void setAk(String propAk) {
+        ak = propAk;
     }
 
-    @Value("#{configProperties['baidu.bookStoragePlaceGeotableId']}")
-    public static void setBookStoragePlaceGeotableId(String bookStoragePlaceGeotableId) {
-        BaiduLbsCloudUtils.bookStoragePlaceGeotableId = bookStoragePlaceGeotableId;
+    @Value("#{apiConfigProperties['baidu.bookStoragePlaceGeotableId']}")
+    public static void setBookStoragePlaceGeotableId(String propBookStoragePlaceGeotableIdVal) {
+        bookStoragePlaceGeotableId = propBookStoragePlaceGeotableIdVal;
     }
 
     public static String createBookStoragePlace(CreateBookStoragePlaceRequest req) {
 
         logger.debug("createBookStoragePlace begin");
+        logger.debug("ak = " + ak);
+        logger.debug("bookStoragePlaceGeotableId = " + bookStoragePlaceGeotableId);
 
         CreatePoiReq createPoiReq = new CreatePoiReq(null, BaiduLbsConstants.COORD_TYPE_BD09,
                 bookStoragePlaceGeotableId, ak, req);

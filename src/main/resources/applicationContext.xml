@@ -30,7 +30,7 @@
     </bean>
 
     <!-- 加载properties文件 -->
-    <bean id="configProperties"
+    <bean id="apiConfigProperties"
         class="org.springframework.beans.factory.config.PropertiesFactoryBean">
         <property name="locations">
             <list>
