@@ -58,6 +58,7 @@ public class BookStoragePlaceServiceImpl extends BasicService implements BookSto
             logger.debug("saveBookStoragePlace end");
             return res;
         } catch (Exception e) {
+            e.printStackTrace();
             return res;
         }
     }
