@@ -47,8 +47,11 @@ public class BookStoragePlaceServiceImpl extends BasicService implements BookSto
             BookStoragePlace bookStoragePlace = new BookStoragePlace(req);
             bookStoragePlace.setPoiId(poiId);
 
+            logger.debug("bookStoragePlace =" + bookStoragePlace);
+
             // 保存到数据库
-            bookStoragePlaceMapper.saveBookStoragePlace(bookStoragePlace);
+            boolean result = bookStoragePlaceMapper.saveBookStoragePlace(bookStoragePlace);
+            logger.debug("result =" + result);
             // 更新返回结果
             res.setId(bookStoragePlace.getId());
             res.setStatus(0);
