@@ -33,6 +33,9 @@ public class BookStoragePlaceServiceImpl extends BasicService implements BookSto
         res.setStatus(1);
         res.setMessage("failed");
 
+        // 初始化存书点对象
+        BookStoragePlace bookStoragePlace = new BookStoragePlace(req);
+
         try {
             // 保存到百度LBS云
             String poiId = BaiduLbsCloudUtils.createBookStoragePlace(req);
@@ -44,10 +47,8 @@ public class BookStoragePlaceServiceImpl extends BasicService implements BookSto
                 logger.debug("saveBookStoragePlace end");
                 return res;
             }
-            logger.debug("before new BookStoragePlace");
-            BookStoragePlace bookStoragePlace = new BookStoragePlace(req);
             bookStoragePlace.setPoiId(poiId);
-            logger.debug("after new BookStoragePlace");
+            logger.debug("after setPoiId");
             logger.debug("bookStoragePlace =" + bookStoragePlace);
 
             // 保存到数据库
