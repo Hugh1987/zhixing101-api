@@ -44,24 +44,30 @@ public class BookStoragePlaceServiceImpl extends BasicService implements BookSto
 
             // 判断百度LBS云保存结果
             if (StringUtils.isEmpty(poiId)) {
+
+                logger.debug("saveBookStoragePlace res = " + res);
+                logger.debug("saveBookStoragePlace end");
+                return res;
+            } else {
+
+                bookStoragePlace.setPoiId(poiId);
+
+                logger.debug("bookStoragePlace =" + bookStoragePlace);
+
+                // 保存到数据库
+                boolean result = bookStoragePlaceMapper.saveBookStoragePlace(bookStoragePlace);
+                logger.debug("the result of saving bookStoragePlace to = " + result);
+
+                // 更新返回结果
+                res.setId(bookStoragePlace.getId());
+                res.setStatus(0);
+                res.setMessage("succeed");
+
+                logger.debug("saveBookStoragePlace res = " + res);
                 logger.debug("saveBookStoragePlace end");
                 return res;
             }
-            bookStoragePlace.setPoiId(poiId);
-            logger.debug("after setPoiId");
-            logger.debug("bookStoragePlace =" + bookStoragePlace);
 
-            // 保存到数据库
-            boolean result = bookStoragePlaceMapper.saveBookStoragePlace(bookStoragePlace);
-            logger.debug("result =" + result);
-            // 更新返回结果
-            res.setId(bookStoragePlace.getId());
-            res.setStatus(0);
-            res.setMessage("succeed");
-
-            logger.debug("saveBookStoragePlace res = " + res);
-            logger.debug("saveBookStoragePlace end");
-            return res;
         } catch (Exception e) {
             e.printStackTrace();
             return res;
