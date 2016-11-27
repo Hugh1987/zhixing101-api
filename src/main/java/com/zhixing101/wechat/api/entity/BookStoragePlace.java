@@ -207,6 +207,7 @@ public class BookStoragePlace extends BaseEntity {
 
     public BookStoragePlace(CreateBookStoragePlaceRequest req) {
         super();
+        this.ownerUser = new User(); 
         this.name = req.getName();
         this.description = req.getDescription();
         this.longtitude = req.getLongtitude();
