@@ -231,21 +231,28 @@ public class CreatePoiReq {
 
     @Override
     public String toString() {
-        return "CreatePoiReq [title=" + title + ", address=" + address + ", latitude=" + latitude + ", longitude="
-                + longitude + ", coord_type=" + coord_type + ", geotable_id=" + geotable_id + ", ak=" + ak
-                + ", description=" + description + ", name=" + name + "]";
+        return "CreatePoiReq [title=" + title + ", address=" + address + ", tags=" + tags + ", latitude=" + latitude
+                + ", longitude=" + longitude + ", coord_type=" + coord_type + ", geotable_id=" + geotable_id + ", ak="
+                + ak + ", sn=" + sn + ", description=" + description + ", delete_flag=" + delete_flag + ", traffic="
+                + traffic + ", open_time=" + open_time + ", owner_user_id=" + owner_user_id + ", mobile_phone="
+                + mobile_phone + ", phone=" + phone + ", name=" + name + "]";
     }
 
     public CreatePoiReq(String tags, int coord_type, String geotable_id, String ak, CreateBookStoragePlaceRequest req) {
         this.title = req.getName();
+        this.address = req.getAddress();
         this.tags = tags;
         this.latitude = Double.parseDouble(req.getLatitude());
         this.longitude = Double.parseDouble(req.getLongtitude());
         this.coord_type = coord_type;
         this.geotable_id = geotable_id;
         this.ak = ak;
-        this.description = req.getDescription();
         this.name = req.getName();
+        this.description = req.getDescription();
+        this.phone = req.getPhone();
+        this.mobile_phone = req.getMobilePhone();
+        this.open_time = req.getOpenTime();
+        this.traffic = req.getTraffic();
     }
 
 }

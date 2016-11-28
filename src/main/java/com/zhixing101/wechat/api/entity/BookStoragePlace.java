@@ -212,7 +212,15 @@ public class BookStoragePlace extends BaseEntity {
         this.description = req.getDescription();
         this.longtitude = req.getLongtitude();
         this.latitude = req.getLatitude();
+        this.province = req.getProvince();
+        this.city = req.getCity();
+        this.district = req.getDistrict();
+        this.address = req.getAddress();
+        this.phone = req.getPhone();
+        this.mobilePhone = req.getMobilePhone();
         this.ownerUser.setWechatOpenId(req.getWechatOpenId());
+        this.openTime = req.getOpenTime();
+        this.traffic = req.getTraffic();
     }
 
 }

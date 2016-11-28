@@ -88,28 +88,21 @@ public class BaiduLbsCloudUtils {
             // 基本
             params.add(new BasicNameValuePair("title", createPoiReq.getTitle()));
             params.add(new BasicNameValuePair("address", createPoiReq.getAddress()));
-            // params.add(new BasicNameValuePair("tags",
-            // createPoiReq.getTags()));
+            // tags
             params.add(new BasicNameValuePair("latitude", String.valueOf(createPoiReq.getLatitude())));
             params.add(new BasicNameValuePair("longitude", String.valueOf(createPoiReq.getLongitude())));
             params.add(new BasicNameValuePair("coord_type", String.valueOf(createPoiReq.getCoord_type())));
             params.add(new BasicNameValuePair("geotable_id", createPoiReq.getGeotable_id()));
             params.add(new BasicNameValuePair("ak", createPoiReq.getAk()));
-            // params.add(new BasicNameValuePair("sn", createPoiReq.getSn()));
+            // sn
             // 开发者自定义
             params.add(new BasicNameValuePair("description", createPoiReq.getDescription()));
-            // params.add(new BasicNameValuePair("delete_flag",
-            // String.valueOf(createPoiReq.getDelete_flag())));
-            // params.add(new BasicNameValuePair("traffic",
-            // createPoiReq.getTraffic()));
-            // params.add(new BasicNameValuePair("open_time",
-            // createPoiReq.getOpen_time()));
-            // params.add(new BasicNameValuePair("owner_user_id",
-            // createPoiReq.getOwner_user_id()));
-            // params.add(new BasicNameValuePair("mobile_phone",
-            // createPoiReq.getMobile_phone()));
-            // params.add(new BasicNameValuePair("phone",
-            // createPoiReq.getPhone()));
+            // delete_flag
+            params.add(new BasicNameValuePair("traffic", createPoiReq.getTraffic()));
+            params.add(new BasicNameValuePair("open_time", createPoiReq.getOpen_time()));
+            // owner_user_id
+            params.add(new BasicNameValuePair("mobile_phone", createPoiReq.getMobile_phone()));
+            params.add(new BasicNameValuePair("phone", createPoiReq.getPhone()));
             params.add(new BasicNameValuePair("name", createPoiReq.getName()));
 
             // 设置参数
