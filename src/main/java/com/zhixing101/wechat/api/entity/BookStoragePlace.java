@@ -25,6 +25,7 @@ public class BookStoragePlace extends BaseEntity {
     private User ownerUser; // 存放点所有人
     private String openTime; // 开放时间
     private String traffic; // 交通
+    private String pictureId; // 图片Id
     private User creator; // 创建者
     private Timestamp createTime; // 创建时间
     private User updateUser; // 更新者
@@ -159,6 +160,14 @@ public class BookStoragePlace extends BaseEntity {
         this.traffic = traffic;
     }
 
+    public String getPictureId() {
+        return pictureId;
+    }
+
+    public void setPictureId(String pictureId) {
+        this.pictureId = pictureId;
+    }
+
     public User getCreator() {
         return creator;
     }
@@ -201,13 +210,17 @@ public class BookStoragePlace extends BaseEntity {
 
     @Override
     public String toString() {
-        return "BookStoragePlace [poiId=" + poiId + ", name=" + name + ", description=" + description + ", longtitude="
-                + longtitude + ", latitude=" + latitude + "]";
+        return "BookStoragePlace [id=" + id + ", poiId=" + poiId + ", name=" + name + ", description=" + description
+                + ", longtitude=" + longtitude + ", latitude=" + latitude + ", province=" + province + ", city=" + city
+                + ", district=" + district + ", street=" + street + ", address=" + address + ", phone=" + phone
+                + ", mobilePhone=" + mobilePhone + ", ownerUser=" + ownerUser + ", openTime=" + openTime + ", traffic="
+                + traffic + ", pictureId=" + pictureId + ", creator=" + creator + ", createTime=" + createTime
+                + ", updateUser=" + updateUser + ", updateTime=" + updateTime + ", isDeleted=" + isDeleted + "]";
     }
 
     public BookStoragePlace(CreateBookStoragePlaceRequest req) {
         super();
-        this.ownerUser = new User(); 
+        this.ownerUser = new User();
         this.name = req.getName();
         this.description = req.getDescription();
         this.longtitude = req.getLongtitude();
